@@ -25,6 +25,26 @@ class TimePeriod:
     def get_entered_as_list(self):
         return[self.visits, self.pageviews, self.orders, self.revenue]
 
+    def do_calculated_fields(self):
+        """
+        Calculate pages per visits and conversion rate.
+        """
+        pages_per_visit = round(self.pageviews / self.visits, 2)
+        conversion_rate = round(self.orders / self.visits * 100, 2)
+
+        return Calculated(pages_per_visit, conversion_rate)
+
+class Calculated:
+    """
+    Represent pages per visit and conversion rate.
+    """
+    def __init__(self, pages_per_visit, conversion_rate):
+        self.pages_per_visit = pages_per_visit
+        self.conversion_rate = conversion_rate
+
+    def get_calculated_as_list(self):
+        return[self.pages_per_visit, self.conversion_rate]
+        
 def get_data_item(type):
     """
     Get input from user for data.
@@ -35,7 +55,7 @@ def get_data_item(type):
 def gather_data():
     """
     Assign variable to data collection function.
-    """       
+    """
     visits_data = get_data_item("visits")
     pageviews_data = get_data_item("pageviews")
     orders_data = get_data_item("orders")
@@ -45,4 +65,7 @@ def gather_data():
 
 day_of_data = gather_data()
 list_entered = day_of_data.get_entered_as_list()
+list_calculated = day_of_data.do_calculated_fields().get_calculated_as_list()
 print(list_entered)
+print(list_calculated)
+

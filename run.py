@@ -1,6 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 
+
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -96,6 +97,19 @@ def update_worksheet(data, worksheet):
     worksheet_to_update.append_row(data)
     print(f"{worksheet} worksheet updated successfully\n")
 
+def get_last_7_entries_dataset():
+    """
+    Collects columns of data from the dataset worksheet, collecting
+    the last 7 entries and returns the data as a list of lists.
+    """
+    seven_days = SHEET.worksheet("dataset")
+
+    columns = []
+    for ind in range(1, 5):
+        column = seven_days.col_values(ind)
+        columns.append(column[-7:])
+
+    return columns
 
 day_of_data = gather_data()
 list_entered = day_of_data.get_entered_as_list()
@@ -103,4 +117,5 @@ list_calculated = day_of_data.do_calculated_fields().get_calculated_as_list()
 list_for_sheet = list_entered + list_calculated
 print(list_for_sheet)
 update_worksheet(list_for_sheet, "dataset")
-
+dataset_columns = get_last_7_entries_dataset()
+print(dataset_columns)

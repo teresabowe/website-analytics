@@ -89,6 +89,7 @@ def gather_data():
 day_of_data = gather_data()
 list_entered = day_of_data.get_entered_as_list()
 list_calculated = day_of_data.do_calculated_fields().get_calculated_as_list()
-print(list_entered)
-print(list_calculated)
+list_for_sheet = list_entered + list_calculated
+print(list_for_sheet)
+
 

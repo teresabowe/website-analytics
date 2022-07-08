@@ -107,15 +107,20 @@ def get_last_7_entries_dataset():
     columns = []
     for ind in range(1, 5):
         column = seven_days.col_values(ind)
-        columns.append(column[-7:])
+        columns.append(column[-14:-7])
 
     return columns
-
-day_of_data = gather_data()
-list_entered = day_of_data.get_entered_as_list()
-list_calculated = day_of_data.do_calculated_fields().get_calculated_as_list()
-list_for_sheet = list_entered + list_calculated
-print(list_for_sheet)
-update_worksheet(list_for_sheet, "dataset")
+    
+def main():
+    """
+    Run program functions
+    """
+    day_of_data = gather_data()
+    list_entered = day_of_data.get_entered_as_list()
+    list_calculated = day_of_data.do_calculated_fields().get_calculated_as_list()
+    list_for_sheet = list_entered + list_calculated
+    print(list_for_sheet)
+    update_worksheet(list_for_sheet, "dataset")
+    
 dataset_columns = get_last_7_entries_dataset()
 print(dataset_columns)

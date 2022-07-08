@@ -109,16 +109,31 @@ def get_historical_entries_dataset(param1, param2):
         column = seven_days.col_values(ind)
         columns.append(column[param1:param2])
 
-    return columns 
+    return columns
 
 def gather_historical_data():
     """
     Assign variable to historical data collection function.
     """
     historical_data_14_days = get_historical_entries_dataset(-14, -7)
+    historical_data_14_days = [[int(float(j)) for j in i] for i in historical_data_14_days]
+    historical_data_14_days = [sum(sl) for sl in historical_data_14_days]
+    visits_14 = historical_data_14_days[0]
+    pageviews_14 = historical_data_14_days[1]
+    orders_14 = historical_data_14_days[2]
+    revenue_14 = historical_data_14_days[3]
     historical_data_7_days = get_historical_entries_dataset(-7, None)
+    historical_data_7_days = [[int(float(j)) for j in i] for i in historical_data_7_days]
+    historical_data_7_days = [sum(sl) for sl in historical_data_7_days]
+    visits_7 = historical_data_7_days[0]
+    pageviews_7 = historical_data_7_days[1]
+    orders_7 = historical_data_7_days[2]
+    revenue_7 = historical_data_7_days[3]
 
-    return historical_data_14_days, historical_data_7_days
+    return (TimePeriod(visits_14, pageviews_14, orders_14, revenue_14), TimePeriod(visits_7, pageviews_7, orders_7, revenue_7))
+
+
+
 
 def main():
     """
@@ -131,7 +146,12 @@ def main():
     print(list_for_sheet)
     update_worksheet(list_for_sheet, "dataset")
     
-historical_data_14_days = get_historical_entries_dataset(-14, -7)
-historical_data_7_days = get_historical_entries_dataset(-7, None)
+historical_data = gather_historical_data()
+historical_data_14_days = historical_data[0].get_entered_as_list()
+historical_data_14_days_calc = historical_data[0].do_calculated_fields().get_calculated_as_list()
 print(historical_data_14_days)
+print(historical_data_14_days_calc)
+historical_data_7_days = historical_data[1].get_entered_as_list()
+historical_data_7_days_calc = historical_data[1].do_calculated_fields().get_calculated_as_list()
 print(historical_data_7_days)
+print(historical_data_7_days_calc)

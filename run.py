@@ -23,6 +23,9 @@ class TimePeriod:
         self.pageviews = pageviews
         self.revenue = revenue
 
+    def __str__(self):
+         return 'For this time period, the data are visits: ' + str(self.visits) + ', pageviews: ' + str(self.pageviews) + ', orders: ' + str(self.orders) + ', and revenue: ' + str(self.revenue)+'.\n'
+       
     def get_entered_as_list(self):
         return[self.visits, self.pageviews, self.orders, self.revenue]
   
@@ -42,6 +45,9 @@ class Calculated:
     def __init__(self, pages_per_visit, conversion_rate):
         self.pages_per_visit = pages_per_visit
         self.conversion_rate = conversion_rate
+    
+    def __str__(self):
+         return 'We calculated pages per visit of ' + str(self.pages_per_visit)+ ', and a conversion rate of ' + str(self.conversion_rate) + '%.\n'
 
     def get_calculated_as_list(self):
         return[self.pages_per_visit, self.conversion_rate]
@@ -138,10 +144,11 @@ def main():
     Run program functions
     """
     day_of_data = gather_data()
+    print(str(day_of_data))
+    print(str(day_of_data.do_calculated_fields()))
     list_entered = day_of_data.get_entered_as_list()
     list_calculated = day_of_data.do_calculated_fields().get_calculated_as_list()
     list_for_sheet = list_entered + list_calculated
-    print(list_for_sheet)
     update_worksheet(list_for_sheet, "dataset")
     historical_data = gather_historical_data()
     historical_data_14_days = historical_data[0].get_entered_as_list()

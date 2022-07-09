@@ -103,7 +103,7 @@ def update_worksheet(data, worksheet):
     worksheet_to_update.append_row(data)
     print(f"The {worksheet} worksheet has been updated successfully.\n")
 
-def get_historical_entries_dataset(param1, param2):
+def get_historical_entries_dataset(cols, days1, days2):
     """
     Collects columns of data from the dataset worksheet
     and returns the data as a list of lists.
@@ -111,9 +111,9 @@ def get_historical_entries_dataset(param1, param2):
     seven_days = SHEET.worksheet("dataset")
 
     columns = []
-    for ind in range(1, 5):
+    for ind in range(1, cols):
         column = seven_days.col_values(ind)
-        columns.append(column[param1:param2])
+        columns.append(column[days1:days2])
 
     return columns
 
@@ -123,17 +123,22 @@ def gather_historical_data():
     """
     print(f"Reading historical data...\n")
 
-    hist_data_14_days = get_historical_entries_dataset(-14, -7)
+    hist_data_14_days = get_historical_entries_dataset(5, -14, -7)
     hist_data_14_days = [[int(float(j)) for j in i] for i in hist_data_14_days]
     hist_data_14_days = [sum(sl) for sl in hist_data_14_days]
     visits_14, pageviews_14, orders_14, revenue_14 = [hist_data_14_days[i] for i in (0, 1, 2, 3)]
 
-    hist_data_7_days = get_historical_entries_dataset(-7, None)
+    hist_data_7_days = get_historical_entries_dataset(5, -7, None)
     hist_data_7_days = [[int(float(j)) for j in i] for i in hist_data_7_days]
     hist_data_7_days = [sum(sl) for sl in hist_data_7_days]
     visits_7, pageviews_7, orders_7, revenue_7 = [hist_data_7_days[i] for i in (0, 1, 2, 3)]
 
-    return (TimePeriod(visits_14, pageviews_14, orders_14, revenue_14), TimePeriod(visits_7, pageviews_7, orders_7, revenue_7))
+    hist_data_1_day = get_historical_entries_dataset(7, -1, -1)
+    hist_data_1_day = [[int(float(j)) for j in i] for i in hist_data_1_day]
+    hist_data_1_day = [sum(sl) for sl in hist_data_1_day]
+    visits_1, pageviews_1, orders_1, revenue_1, pages_per_visit_1, conversion_rate_1 = [hist_data_1_day[i] for i in (0, 1, 2, 3, 4, 5)]
+
+    return (TimePeriod(visits_14, pageviews_14, orders_14, revenue_14), TimePeriod(visits_7, pageviews_7, orders_7, revenue_7), visits_1, pageviews_1, orders_1, revenue_1, pages_per_visit_1, conversion_rate_1)
 
 def main():
     """

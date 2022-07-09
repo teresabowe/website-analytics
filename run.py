@@ -25,7 +25,7 @@ class TimePeriod:
 
     def get_entered_as_list(self):
         return[self.visits, self.pageviews, self.orders, self.revenue]
-
+  
     def do_calculated_fields(self):
         """
         Calculate pages per visits and conversion rate.
@@ -52,9 +52,10 @@ def get_data_item(type, lower, higher):
     Call validate function to check data.
     """
     while True:
+        print(f"The {type} data are usually between {lower} and {higher}.")
         input_data = input(f"Enter your {type} data here:\n")
         if validate_data(input_data, lower, higher):
-            print("Data is valid!")
+            print("Data is valid!\n")
             break
 
     return(int(input_data))
@@ -95,12 +96,12 @@ def update_worksheet(data, worksheet):
     print(f"Updating {worksheet} worksheet...\n")
     worksheet_to_update = SHEET.worksheet(worksheet)
     worksheet_to_update.append_row(data)
-    print(f"{worksheet} worksheet updated successfully\n")
+    print(f"The {worksheet} worksheet has been updated successfully.\n")
 
 def get_historical_entries_dataset(param1, param2):
     """
-    Collects columns of data from the dataset worksheet, collecting
-    the last 7 entries and returns the data as a list of lists.
+    Collects columns of data from the dataset worksheet
+    and returns the data as a list of lists.
     """
     seven_days = SHEET.worksheet("dataset")
 
@@ -132,9 +133,6 @@ def gather_historical_data():
 
     return (TimePeriod(visits_14, pageviews_14, orders_14, revenue_14), TimePeriod(visits_7, pageviews_7, orders_7, revenue_7))
 
-
-
-
 def main():
     """
     Run program functions
@@ -145,13 +143,14 @@ def main():
     list_for_sheet = list_entered + list_calculated
     print(list_for_sheet)
     update_worksheet(list_for_sheet, "dataset")
-    
-historical_data = gather_historical_data()
-historical_data_14_days = historical_data[0].get_entered_as_list()
-historical_data_14_days_calc = historical_data[0].do_calculated_fields().get_calculated_as_list()
-print(historical_data_14_days)
-print(historical_data_14_days_calc)
-historical_data_7_days = historical_data[1].get_entered_as_list()
-historical_data_7_days_calc = historical_data[1].do_calculated_fields().get_calculated_as_list()
-print(historical_data_7_days)
-print(historical_data_7_days_calc)
+    historical_data = gather_historical_data()
+    historical_data_14_days = historical_data[0].get_entered_as_list()
+    historical_data_14_days_calc = historical_data[0].do_calculated_fields().get_calculated_as_list()
+    print(historical_data_14_days)
+    print(historical_data_14_days_calc)
+    historical_data_7_days = historical_data[1].get_entered_as_list()
+    historical_data_7_days_calc = historical_data[1].do_calculated_fields().get_calculated_as_list()
+    print(historical_data_7_days)
+    print(historical_data_7_days_calc)
+
+main()

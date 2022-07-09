@@ -109,6 +109,7 @@ def get_historical_entries_dataset(param1, param2):
     Collects columns of data from the dataset worksheet
     and returns the data as a list of lists.
     """
+   
     seven_days = SHEET.worksheet("dataset")
 
     columns = []
@@ -122,6 +123,7 @@ def gather_historical_data():
     """
     Assign variable to historical data collection function.
     """
+    print(f"Reading historical data...\n")
     historical_data_14_days = get_historical_entries_dataset(-14, -7)
     historical_data_14_days = [[int(float(j)) for j in i] for i in historical_data_14_days]
     historical_data_14_days = [sum(sl) for sl in historical_data_14_days]
@@ -151,13 +153,13 @@ def main():
     list_for_sheet = list_entered + list_calculated
     update_worksheet(list_for_sheet, "dataset")
     historical_data = gather_historical_data()
-    historical_data_14_days = historical_data[0].get_entered_as_list()
-    historical_data_14_days_calc = historical_data[0].do_calculated_fields().get_calculated_as_list()
-    print(historical_data_14_days)
-    print(historical_data_14_days_calc)
-    historical_data_7_days = historical_data[1].get_entered_as_list()
-    historical_data_7_days_calc = historical_data[1].do_calculated_fields().get_calculated_as_list()
-    print(historical_data_7_days)
-    print(historical_data_7_days_calc)
+    data_14_days = historical_data[0].get_entered_as_list()
+    data_14_days_calc = historical_data[0].do_calculated_fields().get_calculated_as_list()
+    print(data_14_days)
+    print(data_14_days_calc)
+    data_7_days = historical_data[1].get_entered_as_list()
+    data_7_days_calc = historical_data[1].do_calculated_fields().get_calculated_as_list()
+    print(data_7_days)
+    print(data_7_days_calc)
 
 main()

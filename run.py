@@ -1,7 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
 
-
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -109,7 +108,6 @@ def get_historical_entries_dataset(param1, param2):
     Collects columns of data from the dataset worksheet
     and returns the data as a list of lists.
     """
-   
     seven_days = SHEET.worksheet("dataset")
 
     columns = []
@@ -124,10 +122,12 @@ def gather_historical_data():
     Assign variable to historical data collection function.
     """
     print(f"Reading historical data...\n")
+
     hist_data_14_days = get_historical_entries_dataset(-14, -7)
     hist_data_14_days = [[int(float(j)) for j in i] for i in hist_data_14_days]
     hist_data_14_days = [sum(sl) for sl in hist_data_14_days]
     visits_14, pageviews_14, orders_14, revenue_14 = [hist_data_14_days[i] for i in (0, 1, 2, 3)]
+
     hist_data_7_days = get_historical_entries_dataset(-7, None)
     hist_data_7_days = [[int(float(j)) for j in i] for i in hist_data_7_days]
     hist_data_7_days = [sum(sl) for sl in hist_data_7_days]

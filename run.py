@@ -152,7 +152,7 @@ def main():
     list_for_sheet = list_entered + list_calculated
     update_worksheet(list_for_sheet, "dataset")
     historical_data = gather_historical_data()
-    data_14_days = historical_data[0].get_entered_as_list()
+    print("We have aggregated data for the previous 8 to 14 days. " + str(historical_data[0]))
     data_14_days_calc = historical_data[0].do_calculated_fields().get_calculated_as_list()
     print(data_14_days)
     print(data_14_days_calc)

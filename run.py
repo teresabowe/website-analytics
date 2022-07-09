@@ -124,20 +124,14 @@ def gather_historical_data():
     Assign variable to historical data collection function.
     """
     print(f"Reading historical data...\n")
-    historical_data_14_days = get_historical_entries_dataset(-14, -7)
-    historical_data_14_days = [[int(float(j)) for j in i] for i in historical_data_14_days]
-    historical_data_14_days = [sum(sl) for sl in historical_data_14_days]
-    visits_14 = historical_data_14_days[0]
-    pageviews_14 = historical_data_14_days[1]
-    orders_14 = historical_data_14_days[2]
-    revenue_14 = historical_data_14_days[3]
-    historical_data_7_days = get_historical_entries_dataset(-7, None)
-    historical_data_7_days = [[int(float(j)) for j in i] for i in historical_data_7_days]
-    historical_data_7_days = [sum(sl) for sl in historical_data_7_days]
-    visits_7 = historical_data_7_days[0]
-    pageviews_7 = historical_data_7_days[1]
-    orders_7 = historical_data_7_days[2]
-    revenue_7 = historical_data_7_days[3]
+    hist_data_14_days = get_historical_entries_dataset(-14, -7)
+    hist_data_14_days = [[int(float(j)) for j in i] for i in hist_data_14_days]
+    hist_data_14_days = [sum(sl) for sl in hist_data_14_days]
+    visits_14, pageviews_14, orders_14, revenue_14 = [hist_data_14_days[i] for i in (0, 1, 2, 3)]
+    hist_data_7_days = get_historical_entries_dataset(-7, None)
+    hist_data_7_days = [[int(float(j)) for j in i] for i in hist_data_7_days]
+    hist_data_7_days = [sum(sl) for sl in hist_data_7_days]
+    visits_7, pageviews_7, orders_7, revenue_7 = [hist_data_7_days[i] for i in (0, 1, 2, 3)]
 
     return (TimePeriod(visits_14, pageviews_14, orders_14, revenue_14), TimePeriod(visits_7, pageviews_7, orders_7, revenue_7))
 

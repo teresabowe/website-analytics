@@ -140,6 +140,20 @@ def gather_historical_data():
 
     return (TimePeriod(visits_14, pageviews_14, orders_14, revenue_14), TimePeriod(visits_7, pageviews_7, orders_7, revenue_7), visits_1, pageviews_1, orders_1, revenue_1, pages_per_visit_1, conversion_rate_1)
 
+def generate_report():
+    """
+    Report generator for website analytics.
+    """
+    historical_data = gather_historical_data()
+    print("*** Data Analysis Report ***\n")
+    print("We have aggregated data for the previous 8 to 14 days. " + str(historical_data[0]) + str(historical_data[0].do_calculated_fields()))
+    print("We also aggregated data for the previous 1 to 7 days. " + str(historical_data[1]) + str(historical_data[1].do_calculated_fields()))
+    #print(data_14_days_calc)
+    #data_7_days = historical_data[1].get_entered_as_list()
+    #data_7_days_calc = historical_data[1].do_calculated_fields().get_calculated_as_list()
+    #print(data_7_days)
+    #print(data_7_days_calc)
+
 def main():
     """
     Run program functions
@@ -151,14 +165,6 @@ def main():
     list_calculated = day_of_data.do_calculated_fields().get_calculated_as_list()
     list_for_sheet = list_entered + list_calculated
     update_worksheet(list_for_sheet, "dataset")
-    historical_data = gather_historical_data()
-    print("We have aggregated data for the previous 8 to 14 days. " + str(historical_data[0]))
-    data_14_days_calc = historical_data[0].do_calculated_fields().get_calculated_as_list()
-    print(data_14_days)
-    print(data_14_days_calc)
-    data_7_days = historical_data[1].get_entered_as_list()
-    data_7_days_calc = historical_data[1].do_calculated_fields().get_calculated_as_list()
-    print(data_7_days)
-    print(data_7_days_calc)
+    generate_report()
 
 main()

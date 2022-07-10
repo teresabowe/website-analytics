@@ -133,12 +133,16 @@ def gather_historical_data():
     hist_data_7_days = [sum(sl) for sl in hist_data_7_days]
     visits_7, pageviews_7, orders_7, revenue_7 = [hist_data_7_days[i] for i in (0, 1, 2, 3)]
 
-    hist_data_1_day = get_historical_entries_dataset(7, -1, -1)
+    hist_data_1_day = get_historical_entries_dataset(7, -2, -1)
+    print(hist_data_1_day)
     hist_data_1_day = [[int(float(j)) for j in i] for i in hist_data_1_day]
+    print(hist_data_1_day)
     hist_data_1_day = [sum(sl) for sl in hist_data_1_day]
+    print(hist_data_1_day)
     visits_1, pageviews_1, orders_1, revenue_1, pages_per_visit_1, conversion_rate_1 = [hist_data_1_day[i] for i in (0, 1, 2, 3, 4, 5)]
+    print(hist_data_1_day)
 
-    return (TimePeriod(visits_14, pageviews_14, orders_14, revenue_14), TimePeriod(visits_7, pageviews_7, orders_7, revenue_7), visits_1, pageviews_1, orders_1, revenue_1, pages_per_visit_1, conversion_rate_1)
+    return (TimePeriod(visits_14, pageviews_14, orders_14, revenue_14), TimePeriod(visits_7, pageviews_7, orders_7, revenue_7), hist_data_1_day)
 
 def calculate_percentage_change(last, previous):
     """
@@ -158,6 +162,7 @@ def generate_report(data):
     input("Press Enter to continue...")
     data_14_days = data[0].get_entered_as_list() + data[0].do_calculated_fields().get_calculated_as_list()
     data_7_days = data[1].get_entered_as_list() + data[1].do_calculated_fields().get_calculated_as_list()
+    data_1_day = data[2]
     visits_change = calculate_percentage_change(data_7_days[0], data_14_days[0])
     pageviews_change = calculate_percentage_change(data_7_days[1], data_14_days[1])
     pages_per_visit_change = data_7_days[4] - data_14_days[4]

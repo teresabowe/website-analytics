@@ -140,6 +140,14 @@ def gather_historical_data():
 
     return (TimePeriod(visits_14, pageviews_14, orders_14, revenue_14), TimePeriod(visits_7, pageviews_7, orders_7, revenue_7), visits_1, pageviews_1, orders_1, revenue_1, pages_per_visit_1, conversion_rate_1)
 
+def calculate_percentage_change(last, previous):
+    """
+    Calculate the percentage change
+    """
+    percentage_change = (((last-previous)/previous)*100)
+
+    return percentage_change
+
 def generate_report(data):
     """
     Report generator for website analytics.
@@ -147,7 +155,27 @@ def generate_report(data):
     print("*** Data Analysis Report ***\n")
     print("We have aggregated data for the previous 8 to 14 days. " + str(data[0]) + str(data[0].do_calculated_fields()))
     print("We also aggregated data for the previous 1 to 7 days. " + str(data[1]) + str(data[1].do_calculated_fields()))
+    data_14_days = data[0].get_entered_as_list() + data[0].do_calculated_fields().get_calculated_as_list()
+    print(data_14_days)
+    data_7_days = data[1].get_entered_as_list() + data[1].do_calculated_fields().get_calculated_as_list()
+    print(data_7_days)
+    visits_change = calculate_percentage_change(data_7_days[0], data_14_days[0])
+    print(visits_change)
+    pageviews_change = calculate_percentage_change(data_7_days[1], data_14_days[1])
+    print(pageviews_change)
+    orders_change = calculate_percentage_change(data_7_days[2], data_14_days[2])
+    print(orders_change)
+    revenue_change = calculate_percentage_change(data_7_days[3], data_14_days[3])
+    print(revenue_change)
     
+    print("** Total Visits**")
+    if round(visits_change,2) > 0:
+        print(f"Total visits for last week was {data_7_days[0]}, while the previous week was {data_14_days[0]}, a {round(visits_change,2)}% increase.")
+    elif round(visits_change,2) == 0:
+        print(f"Total visits for last week was {data_7_days[0]}, while the previous week was {data_14_days[0]}, on par with last week.")
+    else:
+        print(f"Total visits for last week was {data_7_days[0]}, while the previous week was {data_14_days[0]}, a reduction of {round(visits_change,2)}%.")
+
 def main():
     """
     Run program functions

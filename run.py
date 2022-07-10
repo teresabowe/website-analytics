@@ -155,6 +155,7 @@ def generate_report(data):
     print("*** Data Analysis Report ***\n")
     print("We have aggregated data for the previous 8 to 14 days. " + str(data[0]) + str(data[0].do_calculated_fields()))
     print("We also aggregated data for the previous 1 to 7 days. " + str(data[1]) + str(data[1].do_calculated_fields()))
+    input("Press Enter to continue...")
     data_14_days = data[0].get_entered_as_list() + data[0].do_calculated_fields().get_calculated_as_list()
     print(data_14_days)
     data_7_days = data[1].get_entered_as_list() + data[1].do_calculated_fields().get_calculated_as_list()
@@ -219,6 +220,7 @@ def main():
     day_of_data = gather_data()
     print(str(day_of_data))
     print(str(day_of_data.do_calculated_fields()))
+    input("Press Enter to continue...")
     list_entered = day_of_data.get_entered_as_list()
     list_calculated = day_of_data.do_calculated_fields().get_calculated_as_list()
     list_for_sheet = list_entered + list_calculated

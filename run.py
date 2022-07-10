@@ -157,21 +157,13 @@ def generate_report(data):
     print("We also aggregated data for the previous 1 to 7 days. " + str(data[1]) + str(data[1].do_calculated_fields()))
     input("Press Enter to continue...")
     data_14_days = data[0].get_entered_as_list() + data[0].do_calculated_fields().get_calculated_as_list()
-    print(data_14_days)
     data_7_days = data[1].get_entered_as_list() + data[1].do_calculated_fields().get_calculated_as_list()
-    print(data_7_days)
     visits_change = calculate_percentage_change(data_7_days[0], data_14_days[0])
-    print(visits_change)
     pageviews_change = calculate_percentage_change(data_7_days[1], data_14_days[1])
-    print(pageviews_change)
     pages_per_visit_change = data_7_days[4] - data_14_days[4]
-    print(pages_per_visit_change)
     orders_change = calculate_percentage_change(data_7_days[2], data_14_days[2])
-    print(orders_change)
     conversion_rate_change = data_7_days[5] - data_14_days[5]
-    print(conversion_rate_change)
     revenue_change = calculate_percentage_change(data_7_days[3], data_14_days[3])
-    print(revenue_change)
     
     print()
     print("** Visits Analysis**\n")
@@ -184,11 +176,11 @@ def generate_report(data):
     
     print("** Pageviews and Pages Per Visit Analysis**\n")
     if round(pageviews_change, 2) > 0:
-        print(f"Customer pageviews for last week was {data_7_days[1]}, while the previous week shows {data_14_days[1]}, a {round(pageviews_change,2)}% increase.")
+        print(f"Customer pageviews for last week was {data_7_days[1]}, while the previous week shows {data_14_days[1]}, a {round(pageviews_change,2)}% increase.\n")
     elif round(pageviews_change, 2) == 0:
-        print(f"Customer pageviews for last week was {data_7_days[1]}, while the previous week shows {data_14_days[1]}, on par with last week.")
+        print(f"Customer pageviews for last week was {data_7_days[1]}, while the previous week shows {data_14_days[1]}, on par with last week.\n")
     else:
-        print(f"Customer pageviews for last week was {data_7_days[1]}, while the previous week shows {data_14_days[1]}, a reduction of {round(pageviews_change,2)}%.")
+        print(f"Customer pageviews for last week was {data_7_days[1]}, while the previous week shows {data_14_days[1]}, a reduction of {round(pageviews_change,2)}%.\n")
     
     if round(pages_per_visit_change, 2) > 0:
         print(f"The weekly overview of pages per visit for last week was, {data_7_days[4]}, while the previous week was {data_14_days[4]}, a positive difference of {round(pages_per_visit_change,2)}.\n")
@@ -199,11 +191,11 @@ def generate_report(data):
 
     print("** Orders and Conversion Rate Analysis**\n")
     if round(orders_change, 2) > 0:
-        print(f"Total orders for last week was {data_7_days[2]}, while the previous week was {data_14_days[2]}, a {round(orders_change,2)}% increase.")
+        print(f"Total orders for last week was {data_7_days[2]}, while the previous week was {data_14_days[2]}, a {round(orders_change,2)}% increase.\n")
     elif round(orders_change, 2) == 0:
-        print(f"Total orders for last week was {data_7_days[2]}, while the previous week was {data_14_days[2]}, on par with last week.")
+        print(f"Total orders for last week was {data_7_days[2]}, while the previous week was {data_14_days[2]}, on par with last week.\n")
     else:
-        print(f"Total orders for last week was {data_7_days[2]}, while the previous week was {data_14_days[2]}, a reduction of {round(orders_change,2)}%.")
+        print(f"Total orders for last week was {data_7_days[2]}, while the previous week was {data_14_days[2]}, a reduction of {round(orders_change,2)}%.\n")
     
     if round(conversion_rate_change, 2) > 0:
         print(f"The weekly overview of conversion rate for last week was, {data_7_days[5]}%, while the previous week was {data_14_days[5]}%, a positive difference of {round(conversion_rate_change,2)}%.\n")

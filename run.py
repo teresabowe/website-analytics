@@ -212,6 +212,14 @@ def generate_report(data):
     else:
         print(f"The weekly overview of conversion rate for last week was {data_7_days[5]}%, while the previous week was {data_14_days[5]}%, a difference of {round(conversion_rate_change,2)}%.\n")
 
+    print("** Revenue Analysis**\n")
+    if round(revenue_change, 2) > 0:
+        print(f"Total revenue for last week was {data_7_days[3]}, while the previous week was {data_14_days[3]}, a {round(revenue_change,2)}% increase.\n")
+    elif round(revenue_change, 2) == 0:
+        print(f"Total revenue for last week was {data_7_days[3]}, while the previous week was {data_14_days[3]}, on par with last week.\n")
+    else:
+        print(f"Total revenue for last week was {data_7_days[3]}, while the previous week was {data_14_days[3]}, a reduction of {round(revenue_change,2)}%.\n")
+    
 
 def main():
     """

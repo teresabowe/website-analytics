@@ -167,41 +167,50 @@ def generate_report(data):
     print(pages_per_visit_change)
     orders_change = calculate_percentage_change(data_7_days[2], data_14_days[2])
     print(orders_change)
+    conversion_rate_change = data_7_days[5] - data_14_days[5]
+    print(conversion_rate_change)
     revenue_change = calculate_percentage_change(data_7_days[3], data_14_days[3])
     print(revenue_change)
     
     print()
     print("** Visits Analysis**\n")
-    if round(visits_change,2) > 0:
+    if round(visits_change, 2) > 0:
         print(f"Total visits for last week was {data_7_days[0]}, while the previous week was {data_14_days[0]}, a {round(visits_change,2)}% increase.\n")
-    elif round(visits_change,2) == 0:
+    elif round(visits_change, 2) == 0:
         print(f"Total visits for last week was {data_7_days[0]}, while the previous week was {data_14_days[0]}, on par with last week.\n")
     else:
         print(f"Total visits for last week was {data_7_days[0]}, while the previous week was {data_14_days[0]}, a reduction of {round(visits_change,2)}%.\n")
     
     print("** Pageviews and Pages Per Visit Analysis**\n")
-    if round(pageviews_change,2) > 0:
+    if round(pageviews_change, 2) > 0:
         print(f"Customer pageviews for last week was {data_7_days[1]}, while the previous week shows {data_14_days[1]}, a {round(pageviews_change,2)}% increase.")
-    elif round(pageviews_change,2) == 0:
+    elif round(pageviews_change, 2) == 0:
         print(f"Customer pageviews for last week was {data_7_days[1]}, while the previous week shows {data_14_days[1]}, on par with last week.")
     else:
         print(f"Customer pageviews for last week was {data_7_days[1]}, while the previous week shows {data_14_days[1]}, a reduction of {round(pageviews_change,2)}%.")
     
-    if round(pages_per_visit_change,2) > 0 :
+    if round(pages_per_visit_change, 2) > 0:
         print(f"The weekly overview of pages per visit for last week was, {data_7_days[4]}, while the previous week was {data_14_days[4]}, a positive difference of {round(pages_per_visit_change,2)}.\n")
-    elif round(pages_per_visit_change,2) == 0 :
+    elif round(pages_per_visit_change, 2) == 0:
         print(f"The weekly overview of pages per visit for last week was {data_7_days[4]}, and the previous week was the same at {data_14_days[4]}.\n")
     else:
         print(f"The weekly overview of pages per visit for last week was {data_7_days[4]}, while the previous week was {data_14_days[4]}, a change of {round(pages_per_visit_change,2)}.  The customer therefore opened less pages per visit last week.\n")
 
     print("** Orders and Conversion Rate Analysis**\n")
-    if round(orders_change,2) > 0:
-        print(f"Total orders for last week was {data_7_days[2]}, while the previous week was {data_14_days[2]}, a {round(orders_change,2)}% increase.\n")
-    elif round(orders_change,2) == 0:
-        print(f"Total orders for last week was {data_7_days[2]}, while the previous week was {data_14_days[2]}, on par with last week.\n")
+    if round(orders_change, 2) > 0:
+        print(f"Total orders for last week was {data_7_days[2]}, while the previous week was {data_14_days[2]}, a {round(orders_change,2)}% increase.")
+    elif round(orders_change, 2) == 0:
+        print(f"Total orders for last week was {data_7_days[2]}, while the previous week was {data_14_days[2]}, on par with last week.")
     else:
-        print(f"Total orders for last week was {data_7_days[2]}, while the previous week was {data_14_days[2]}, a reduction of {round(orders_change,2)}%.\n")
+        print(f"Total orders for last week was {data_7_days[2]}, while the previous week was {data_14_days[2]}, a reduction of {round(orders_change,2)}%.")
     
+    if round(conversion_rate_change, 2) > 0:
+        print(f"The weekly overview of conversion rate for last week was, {data_7_days[5]}%, while the previous week was {data_14_days[5]}%, a positive difference of {round(conversion_rate_change,2)}%.\n")
+    elif round(conversion_rate_change, 2) == 0:
+        print(f"The weekly overview of conversion rate for last week was {data_7_days[5]}%, and the previous week was the same at {data_14_days[5]}%.\n")
+    else:
+        print(f"The weekly overview of conversion rate for last week was {data_7_days[5]}%, while the previous week was {data_14_days[5]}%, a difference of {round(conversion_rate_change,2)}%.\n")
+
 
 def main():
     """

@@ -188,12 +188,20 @@ def generate_report(data):
         print(f"Customer pageviews for last week was {data_7_days[1]}, while the previous week shows {data_14_days[1]}, a reduction of {round(pageviews_change,2)}%.")
     
     if round(pages_per_visit_change,2) > 0 :
-        print(f"The weekly overview of pages per visit for last week was, {data_7_days[4]}, while the previous week was {data_14_days[4]}, a positive difference of {round(pages_per_visit_change,2)}.")
+        print(f"The weekly overview of pages per visit for last week was, {data_7_days[4]}, while the previous week was {data_14_days[4]}, a positive difference of {round(pages_per_visit_change,2)}.\n")
     elif round(pages_per_visit_change,2) == 0 :
-        print(f"The weekly overview of pages per visit for last week was {data_7_days[4]}, and the previous week was the same at {data_14_days[4]}.")
+        print(f"The weekly overview of pages per visit for last week was {data_7_days[4]}, and the previous week was the same at {data_14_days[4]}.\n")
     else:
-        print(f"The weekly overview of pages per visit for last week was {data_7_days[4]}, while the previous week was {data_14_days[4]}, a change of {round(pages_per_visit_change,2)}.  The customer therefore opened less pages per visit last week.")
+        print(f"The weekly overview of pages per visit for last week was {data_7_days[4]}, while the previous week was {data_14_days[4]}, a change of {round(pages_per_visit_change,2)}.  The customer therefore opened less pages per visit last week.\n")
 
+    print("** Orders and Conversion Rate Analysis**\n")
+    if round(orders_change,2) > 0:
+        print(f"Total orders for last week was {data_7_days[2]}, while the previous week was {data_14_days[2]}, a {round(orders_change,2)}% increase.\n")
+    elif round(orders_change,2) == 0:
+        print(f"Total orders for last week was {data_7_days[2]}, while the previous week was {data_14_days[2]}, on par with last week.\n")
+    else:
+        print(f"Total orders for last week was {data_7_days[2]}, while the previous week was {data_14_days[2]}, a reduction of {round(orders_change,2)}%.\n")
+    
 
 def main():
     """

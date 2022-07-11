@@ -199,6 +199,8 @@ def generate_report(data):
     else:
         print(f"Total visits for last week was {data_7_days[0]}, while the previous week was {data_14_days[0]}, a reduction of {round(visits_change,2)}%.\n")
 
+    input("Press Enter to continue...")
+
     print("** Pageviews and Pages Per Visit Analysis**\n")
     if round(pageviews_change, 2) > 0:
         print(f"Customer pageviews for last week was {data_7_days[1]}, while the previous week shows {data_14_days[1]}, a {round(pageviews_change,2)}% increase.\n")
@@ -214,6 +216,8 @@ def generate_report(data):
     else:
         print(f"The weekly overview of pages per visit for last week was {data_7_days[4]}, while the previous week was {data_14_days[4]}, a change of {round(pages_per_visit_change,2)}. The customer opened less pages per visit last week.\n")
 
+    input("Press Enter to continue...")
+
     print("** Orders and Conversion Rate Analysis**\n")
     if round(orders_change, 2) > 0:
         print(f"Total orders for last week was {data_7_days[2]}, while the previous week was {data_14_days[2]}, a {round(orders_change,2)}% increase.\n")
@@ -228,6 +232,8 @@ def generate_report(data):
         print(f"The weekly overview of conversion rate for last week was {data_7_days[5]}%, and the previous week was the same at {data_14_days[5]}%.\n")
     else:
         print(f"The weekly overview of conversion rate for last week was {data_7_days[5]}%, while the previous week was {data_14_days[5]}%, a difference of {round(conversion_rate_change,2)}%.\n")
+
+    input("Press Enter to continue...")
 
     print("** Revenue Analysis**\n")
     if round(revenue_change, 2) > 0:

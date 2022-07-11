@@ -252,10 +252,8 @@ def main():
     print(str(day_of_data))
     print(str(day_of_data.do_calculated_fields()))
     input("Press Enter to continue...")
-    list_entered = day_of_data.get_entered_as_list()
-    list_calculated = day_of_data.do_calculated_fields()\
-        .get_calculated_as_list()
-    list_for_sheet = list_entered + list_calculated
+    list_for_sheet = day_of_data.get_entered_as_list() + day_of_data.\
+        do_calculated_fields().get_calculated_as_list()
     update_worksheet(list_for_sheet, "dataset")
     delete_row("dataset")
     historical_data = gather_historical_data()

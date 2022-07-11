@@ -24,7 +24,10 @@ class TimePeriod:
         self.revenue = revenue
 
     def __str__(self):
-        return 'For this time period, the data are visits: ' + str(self.visits) + ', pageviews: ' + str(self.pageviews) + ', orders: ' + str(self.orders) + ', and revenue: ' + str(self.revenue)+'.\n'
+        return 'For this time period, the data are visits: ' \
+            + str(self.visits) + ', pageviews: ' + str(self.pageviews)\
+            + ', orders: ' + str(self.orders) + ', and revenue: ' \
+            + str(self.revenue)+'.\n'
 
     def get_entered_as_list(self):
         return[self.visits, self.pageviews, self.orders, self.revenue]
@@ -48,7 +51,8 @@ class Calculated:
         self.conversion_rate = conversion_rate
 
     def __str__(self):
-        return 'We calculated pages per visit of ' + str(self.pages_per_visit) + ', and a conversion rate of ' + str(self.conversion_rate) + '%.\n'
+        return 'We calculated pages per visit of ' + str(self.pages_per_visit)\
+         + ', and a conversion rate of ' + str(self.conversion_rate) + '%.\n'
 
     def get_calculated_as_list(self):
         return [self.pages_per_visit, self.conversion_rate]
@@ -60,7 +64,7 @@ def get_data_item(data_type, lower, higher):
     Call validate function to check data.
     """
     while True:
-        print(f"The {data_type} data are usually between {lower} and {higher}.")
+        print(f"The {data_type} data are between {lower} and {higher}.")
         input_data = input(f"Enter your {data_type} data here:\n")
         if validate_data(input_data, lower, higher):
             print("Data is valid!\n")
@@ -129,17 +133,19 @@ def gather_historical_data():
     """
     Assign variable to historical data collection function.
     """
-    print(f"Reading historical data...\n")
+    print("Reading historical data...\n")
 
-    hist_data_14_days = get_historical_entries_dataset(5, -14, -7)
-    hist_data_14_days = [[int(float(j)) for j in i] for i in hist_data_14_days]
-    hist_data_14_days = [sum(sl) for sl in hist_data_14_days]
-    visits_14, pageviews_14, orders_14, revenue_14 = [hist_data_14_days[i] for i in (0, 1, 2, 3)]
+    hist_14_days = get_historical_entries_dataset(5, -14, -7)
+    hist_14_days = [[int(float(j)) for j in i] for i in hist_14_days]
+    hist_14_days = [sum(sl) for sl in hist_14_days]
+    visits_14, pageviews_14, orders_14, revenue_14 = [hist_14_days[i] for i in
+        (0, 1, 2, 3)]
 
-    hist_data_7_days = get_historical_entries_dataset(5, -7, None)
-    hist_data_7_days = [[int(float(j)) for j in i] for i in hist_data_7_days]
-    hist_data_7_days = [sum(sl) for sl in hist_data_7_days]
-    visits_7, pageviews_7, orders_7, revenue_7 = [hist_data_7_days[i] for i in (0, 1, 2, 3)]
+    hist_7_days = get_historical_entries_dataset(5, -7, None)
+    hist_7_days = [[int(float(j)) for j in i] for i in hist_7_days]
+    hist_7_days = [sum(sl) for sl in hist_7_days]
+    visits_7, pageviews_7, orders_7, revenue_7 = [hist_7_days[i] for i in
+        (0, 1, 2, 3)]
 
     hist_data_1_day = get_historical_entries_dataset(7, -2, -1)
     print(hist_data_1_day)
@@ -167,11 +173,15 @@ def generate_report(data):
     Report generator for website analytics.
     """
     print("*** Data Analysis Report ***\n")
-    print("We have aggregated data for the previous 8 to 14 days. " + str(data[0]) + str(data[0].do_calculated_fields()))
-    print("We also aggregated data for the previous 1 to 7 days. " + str(data[1]) + str(data[1].do_calculated_fields()))
+    print("We have aggregated data for the previous 8 to 14 days. "
+        + str(data[0]) + str(data[0].do_calculated_fields()))
+    print("We also aggregated data for the previous 1 to 7 days. "
+        + str(data[1]) + str(data[1].do_calculated_fields()))
     input("Press Enter to continue...")
-    data_14_days = data[0].get_entered_as_list() + data[0].do_calculated_fields().get_calculated_as_list()
-    data_7_days = data[1].get_entered_as_list() + data[1].do_calculated_fields().get_calculated_as_list()
+    data_14_days = data[0].get_entered_as_list() + \
+        data[0].do_calculated_fields().get_calculated_as_list()
+    data_7_days = data[1].get_entered_as_list() + \
+        data[1].do_calculated_fields().get_calculated_as_list()
     data_1_day = data[2]
     visits_change = calculate_percentage_change(data_7_days[0], data_14_days[0])
     pageviews_change = calculate_percentage_change(data_7_days[1], data_14_days[1])
@@ -202,13 +212,13 @@ def generate_report(data):
     elif round(pages_per_visit_change, 2) == 0:
         print(f"The weekly overview of pages per visit for last week was {data_7_days[4]}, and the previous week was the same at {data_14_days[4]}.\n")
     else:
-        print(f"The weekly overview of pages per visit for last week was {data_7_days[4]}, while the previous week was {data_14_days[4]}, a change of {round(pages_per_visit_change,2)}.  The customer therefore opened less pages per visit last week.\n")
+        print(f"The weekly overview of pages per visit for last week was {data_7_days[4]}, while the previous week was {data_14_days[4]}, a change of {round(pages_per_visit_change,2)}. The customer opened less pages per visit last week.\n")
 
     print("** Orders and Conversion Rate Analysis**\n")
     if round(orders_change, 2) > 0:
         print(f"Total orders for last week was {data_7_days[2]}, while the previous week was {data_14_days[2]}, a {round(orders_change,2)}% increase.\n")
     elif round(orders_change, 2) == 0:
-        print(f"Total orders for last week was {data_7_days[2]}, while the previous week was {data_14_days[2]}, on par with last week.\n")
+        print(f"Total orders for last week was {data_7_days[2]}, the previous week was {data_14_days[2]}, on par with last week.\n")
     else:
         print(f"Total orders for last week was {data_7_days[2]}, while the previous week was {data_14_days[2]}, a reduction of {round(orders_change,2)}%.\n")
 
@@ -237,7 +247,8 @@ def main():
     print(str(day_of_data.do_calculated_fields()))
     input("Press Enter to continue...")
     list_entered = day_of_data.get_entered_as_list()
-    list_calculated = day_of_data.do_calculated_fields().get_calculated_as_list()
+    list_calculated = day_of_data.do_calculated_fields()\
+        .get_calculated_as_list()
     list_for_sheet = list_entered + list_calculated
     update_worksheet(list_for_sheet, "dataset")
     historical_data = gather_historical_data()

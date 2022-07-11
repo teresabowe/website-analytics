@@ -98,7 +98,7 @@ def gather_data():
     visits_data = get_data_item("visits", 500, 5000)
     pageviews_data = get_data_item("pageviews", 500, 30000)
     orders_data = get_data_item("orders", 0, 200)
-    revenue_data = get_data_item("revenue", 0, 3000)
+    revenue_data = get_data_item("revenue", 0, 10000)
 
     return TimePeriod(visits_data, pageviews_data, orders_data, revenue_data)
 

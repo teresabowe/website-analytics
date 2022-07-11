@@ -37,7 +37,7 @@ class TimePeriod:
         Calculate pages per visits and conversion rate.
         """
         pages_per_visit = round(self.pageviews / self.visits, 2)
-        conversion_rate = round(self.orders / self.visits * 100, 2)
+        conversion_rate = round((self.orders / self.visits) * 100, 2)
 
         return Calculated(pages_per_visit, conversion_rate)
 

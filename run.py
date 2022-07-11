@@ -114,6 +114,16 @@ def update_worksheet(data, worksheet):
     print(f"The {worksheet} worksheet has been updated successfully.\n")
 
 
+def delete_row(worksheet):
+    """
+    Delete row 1
+    """
+    print(f"Deleting {worksheet} row 1...\n")
+    worksheet_to_update = SHEET.worksheet(worksheet)
+    worksheet_to_update.delete_rows(2)
+    print(f"The {worksheet} row 1 has been deleted successfully.\n")
+
+
 def get_historical_entries_dataset(cols, days1, days2):
     """
     Collects columns of data from the dataset worksheet
@@ -241,6 +251,7 @@ def main():
         .get_calculated_as_list()
     list_for_sheet = list_entered + list_calculated
     update_worksheet(list_for_sheet, "dataset")
+    delete_row("dataset")
     historical_data = gather_historical_data()
     generate_report(historical_data)
 

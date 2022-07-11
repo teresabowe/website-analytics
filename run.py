@@ -12,6 +12,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('website_data')
 
+
 class TimePeriod:
     """
     Represent website analytics data for a time period.
@@ -23,11 +24,11 @@ class TimePeriod:
         self.revenue = revenue
 
     def __str__(self):
-         return 'For this time period, the data are visits: ' + str(self.visits) + ', pageviews: ' + str(self.pageviews) + ', orders: ' + str(self.orders) + ', and revenue: ' + str(self.revenue)+'.\n'
-       
+        return 'For this time period, the data are visits: ' + str(self.visits) + ', pageviews: ' + str(self.pageviews) + ', orders: ' + str(self.orders) + ', and revenue: ' + str(self.revenue)+'.\n'
+
     def get_entered_as_list(self):
         return[self.visits, self.pageviews, self.orders, self.revenue]
-  
+
     def do_calculated_fields(self):
         """
         Calculate pages per visits and conversion rate.
@@ -37,6 +38,7 @@ class TimePeriod:
 
         return Calculated(pages_per_visit, conversion_rate)
 
+
 class Calculated:
     """
     Represent pages per visit and conversion rate.
@@ -44,26 +46,28 @@ class Calculated:
     def __init__(self, pages_per_visit, conversion_rate):
         self.pages_per_visit = pages_per_visit
         self.conversion_rate = conversion_rate
-    
+
     def __str__(self):
-         return 'We calculated pages per visit of ' + str(self.pages_per_visit)+ ', and a conversion rate of ' + str(self.conversion_rate) + '%.\n'
+        return 'We calculated pages per visit of ' + str(self.pages_per_visit) + ', and a conversion rate of ' + str(self.conversion_rate) + '%.\n'
 
     def get_calculated_as_list(self):
-        return[self.pages_per_visit, self.conversion_rate]
-        
-def get_data_item(type, lower, higher):
+        return [self.pages_per_visit, self.conversion_rate]
+
+
+def get_data_item(data_type, lower, higher):
     """
     Get input from user for data.
     Call validate function to check data.
     """
     while True:
-        print(f"The {type} data are usually between {lower} and {higher}.")
-        input_data = input(f"Enter your {type} data here:\n")
+        print(f"The {data_type} data are usually between {lower} and {higher}.")
+        input_data = input(f"Enter your {data_type} data here:\n")
         if validate_data(input_data, lower, higher):
             print("Data is valid!\n")
             break
 
-    return(int(input_data))
+    return int(input_data)
+
 
 def validate_data(values, lower, higher):
     """
@@ -79,8 +83,9 @@ def validate_data(values, lower, higher):
     except ValueError as e:
         print(f"Invalid data {e}:, please try again.\n")
         return False
-        
+
     return True
+
 
 def gather_data():
     """
@@ -93,6 +98,7 @@ def gather_data():
 
     return TimePeriod(visits_data, pageviews_data, orders_data, revenue_data)
 
+
 def update_worksheet(data, worksheet):
     """
     Receives a list of values to be inserted into a worksheet
@@ -102,6 +108,7 @@ def update_worksheet(data, worksheet):
     worksheet_to_update = SHEET.worksheet(worksheet)
     worksheet_to_update.append_row(data)
     print(f"The {worksheet} worksheet has been updated successfully.\n")
+
 
 def get_historical_entries_dataset(cols, days1, days2):
     """
@@ -116,6 +123,7 @@ def get_historical_entries_dataset(cols, days1, days2):
         columns.append(column[days1:days2])
 
     return columns
+
 
 def gather_historical_data():
     """
@@ -144,6 +152,7 @@ def gather_historical_data():
 
     return (TimePeriod(visits_14, pageviews_14, orders_14, revenue_14), TimePeriod(visits_7, pageviews_7, orders_7, revenue_7), hist_data_1_day)
 
+
 def calculate_percentage_change(last, previous):
     """
     Calculate the percentage change
@@ -151,6 +160,7 @@ def calculate_percentage_change(last, previous):
     percentage_change = (((last-previous)/previous)*100)
 
     return percentage_change
+
 
 def generate_report(data):
     """
@@ -169,7 +179,7 @@ def generate_report(data):
     orders_change = calculate_percentage_change(data_7_days[2], data_14_days[2])
     conversion_rate_change = data_7_days[5] - data_14_days[5]
     revenue_change = calculate_percentage_change(data_7_days[3], data_14_days[3])
-    
+
     print()
     print("** Visits Analysis**\n")
     if round(visits_change, 2) > 0:
@@ -178,7 +188,7 @@ def generate_report(data):
         print(f"Total visits for last week was {data_7_days[0]}, while the previous week was {data_14_days[0]}, on par with last week.\n")
     else:
         print(f"Total visits for last week was {data_7_days[0]}, while the previous week was {data_14_days[0]}, a reduction of {round(visits_change,2)}%.\n")
-    
+
     print("** Pageviews and Pages Per Visit Analysis**\n")
     if round(pageviews_change, 2) > 0:
         print(f"Customer pageviews for last week was {data_7_days[1]}, while the previous week shows {data_14_days[1]}, a {round(pageviews_change,2)}% increase.\n")
@@ -186,7 +196,7 @@ def generate_report(data):
         print(f"Customer pageviews for last week was {data_7_days[1]}, while the previous week shows {data_14_days[1]}, on par with last week.\n")
     else:
         print(f"Customer pageviews for last week was {data_7_days[1]}, while the previous week shows {data_14_days[1]}, a reduction of {round(pageviews_change,2)}%.\n")
-    
+
     if round(pages_per_visit_change, 2) > 0:
         print(f"The weekly overview of pages per visit for last week was, {data_7_days[4]}, while the previous week was {data_14_days[4]}, a positive difference of {round(pages_per_visit_change,2)}.\n")
     elif round(pages_per_visit_change, 2) == 0:
@@ -201,7 +211,7 @@ def generate_report(data):
         print(f"Total orders for last week was {data_7_days[2]}, while the previous week was {data_14_days[2]}, on par with last week.\n")
     else:
         print(f"Total orders for last week was {data_7_days[2]}, while the previous week was {data_14_days[2]}, a reduction of {round(orders_change,2)}%.\n")
-    
+
     if round(conversion_rate_change, 2) > 0:
         print(f"The weekly overview of conversion rate for last week was, {data_7_days[5]}%, while the previous week was {data_14_days[5]}%, a positive difference of {round(conversion_rate_change,2)}%.\n")
     elif round(conversion_rate_change, 2) == 0:
@@ -216,7 +226,7 @@ def generate_report(data):
         print(f"Total revenue for last week was {data_7_days[3]}, while the previous week was {data_14_days[3]}, on par with last week.\n")
     else:
         print(f"Total revenue for last week was {data_7_days[3]}, while the previous week was {data_14_days[3]}, a reduction of {round(revenue_change,2)}%.\n")
-    
+
 
 def main():
     """
@@ -232,5 +242,6 @@ def main():
     update_worksheet(list_for_sheet, "dataset")
     historical_data = gather_historical_data()
     generate_report(historical_data)
+
 
 main()

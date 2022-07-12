@@ -146,12 +146,18 @@ def gather_historical_data():
     print("Reading historical data...\n")
 
     hist_14_days = get_historical_entries_dataset(5, -14, -7)
+    print(hist_14_days)
+    print(min(hist_14_days[2]))
+    input("Press Enter to continue...")
     hist_14_days = [[int(float(j)) for j in i] for i in hist_14_days]
     hist_14_days = [sum(sl) for sl in hist_14_days]
     visits_14, pageviews_14, orders_14, revenue_14 = [hist_14_days[i] for i in
                                                       (0, 1, 2, 3)]
 
     hist_7_days = get_historical_entries_dataset(5, -7, None)
+    print(hist_7_days)
+    print(min(hist_7_days[2]))
+    input("Press Enter to continue...")
     hist_7_days = [[int(float(j)) for j in i] for i in hist_7_days]
     hist_7_days = [sum(sl) for sl in hist_7_days]
     visits_7, pageviews_7, orders_7, revenue_7 = [hist_7_days[i] for i in

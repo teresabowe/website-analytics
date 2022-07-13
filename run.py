@@ -1,3 +1,4 @@
+import time
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -147,25 +148,23 @@ def gather_historical_data():
     Assign variable to historical data collection function.
     """
     print("Reading historical data...\n")
+    print("Starting performance counter")
+    start_counter = time.perf_counter()
 
     hist_14_days = get_historical_entries_dataset(5, -14, -7)
-    print(hist_14_days)
-    print(min(hist_14_days[2]))
-    input("Press Enter to continue...")
     hist_14_days = [[int(float(j)) for j in i] for i in hist_14_days]
     hist_14_days = [sum(sl) for sl in hist_14_days]
     visits_14, pageviews_14, orders_14, revenue_14 = [hist_14_days[i] for i in
                                                       (0, 1, 2, 3)]
 
     hist_7_days = get_historical_entries_dataset(5, -7, None)
-    print(hist_7_days)
-    print(min(hist_7_days[2]))
-    input("Press Enter to continue...")
     hist_7_days = [[int(float(j)) for j in i] for i in hist_7_days]
     hist_7_days = [sum(sl) for sl in hist_7_days]
     visits_7, pageviews_7, orders_7, revenue_7 = [hist_7_days[i] for i in
                                                   (0, 1, 2, 3)]
+    end_counter = time.perf_counter()
 
+    print(f"Time elapsed is {start_counter - end_counter:0.4f} seconds")
     return (TimePeriod(visits_14, pageviews_14, orders_14, revenue_14),
             TimePeriod(visits_7, pageviews_7, orders_7, revenue_7))
 

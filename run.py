@@ -64,7 +64,7 @@ def get_data_item(data_type, lower, higher):
     Call validate function to check data.
     """
     while True:
-        print(f"The {data_type} data are between {lower} and {higher}.")
+        print(f"The {data_type} data can be between {lower} and {higher}.")
         input_data = input(f"Enter your {data_type} data here:\n")
         if validate_data(input_data, lower, higher):
             print("Data is valid!\n")
@@ -98,7 +98,10 @@ def gather_data():
     visits_data = get_data_item("visits", 500, 5000)
     pageviews_data = get_data_item("pageviews", 500, 30000)
     orders_data = get_data_item("orders", 0, 200)
-    revenue_data = get_data_item("revenue", 0, 10000)
+    if orders_data == 0:
+        revenue_data = get_data_item("revenue", 0, 0)
+    else:
+        revenue_data = get_data_item("revenue", 1, 10000)
 
     return TimePeriod(visits_data, pageviews_data, orders_data, revenue_data)
 

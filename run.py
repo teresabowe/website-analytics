@@ -195,7 +195,7 @@ def generate_report(data):
           str(data[1]) + str(data[1].do_calculated_fields())))
     print(("We have also aggregated data for last week. \n") +
           (str(data[0]) + str(data[0].do_calculated_fields())))
-  
+
     input("Press Enter to continue with the analysis...\n")
 
     last_week = data[0].get_entered_as_list() + \
@@ -220,7 +220,7 @@ def generate_report(data):
     revenue_change = calculate_percentage_change(this_week[3],
                                                  last_week[3])
 
-    print("** Visits Analysis**\n")
+    print("** Visits Analysis **\n")
     if round(visits_change, 2) > 0:
         print((f"Total visits for this week was {this_week[0]}, ") +
               (f"while last week the visits total was {last_week[0]}. ") +
@@ -238,7 +238,7 @@ def generate_report(data):
 
     input("Press Enter to continue...\n")
 
-    print("** Pageviews and Pages Per Visit Analysis**\n")
+    print("** Pageviews and Pages Per Visit Analysis **\n")
     if round(pageviews_change, 2) > 0:
         print((f"Customer pageviews for this week was {this_week[1]}, ") +
               (f"while last week shows {last_week[1]}. ") +
@@ -274,7 +274,7 @@ def generate_report(data):
 
     input("Press Enter to continue...\n")
 
-    print("** Orders and Conversion Rate Analysis**\n")
+    print("** Orders and Conversion Rate Analysis **\n")
     if round(orders_change, 2) > 0:
         print((f"Total orders for this week was {this_week[2]}, ") +
               (f"while last week the figure was {last_week[2]}, ") +
@@ -309,7 +309,7 @@ def generate_report(data):
 
     input("Press Enter to continue...\n")
 
-    print("** Revenue Analysis**\n")
+    print("** Revenue Analysis **\n")
     if round(revenue_change, 2) > 0:
         print((f"Total revenue for this week was {this_week[3]}, ") +
               (f"while last week it was {last_week[3]}, ") +
@@ -324,6 +324,7 @@ def generate_report(data):
               (f"while last week it was {last_week[3]}, ") +
               (f"a reduction of {round(-revenue_change,2)}%.") +
               (" \u2193 \n"))
+    print("** End of the report.  Select RUN PROGRAM to enter new data. **")
 
 
 def main():

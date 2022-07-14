@@ -1,6 +1,9 @@
 import time
 import gspread
+import numpy as np
 from google.oauth2.service_account import Credentials
+from tabulate import tabulate
+
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -151,22 +154,95 @@ def gather_historical_data():
     print("Starting performance counter")
     start_counter = time.perf_counter()
 
+    print("Get last weeks data")
     hist_14_days = get_historical_entries_dataset(5, -14, -7)
+    print("Convert to integer")
     hist_14_days = [[int(float(j)) for j in i] for i in hist_14_days]
+    print("Sum items for last week")
     hist_14_days = [sum(sl) for sl in hist_14_days]
     visits_14, pageviews_14, orders_14, revenue_14 = [hist_14_days[i] for i in
                                                       (0, 1, 2, 3)]
-
+    print("Get this weeks data")
     hist_7_days = get_historical_entries_dataset(5, -7, None)
+    print("Convert to integer")
     hist_7_days = [[int(float(j)) for j in i] for i in hist_7_days]
+    print("Sum items for this week")
     hist_7_days = [sum(sl) for sl in hist_7_days]
     visits_7, pageviews_7, orders_7, revenue_7 = [hist_7_days[i] for i in
                                                   (0, 1, 2, 3)]
+    print("Print returned data")
+    print(visits_14)
+    print(pageviews_14)
+    print(orders_14)
+    print(revenue_14)
+    print(visits_7)
+    print(pageviews_7)
+    print(orders_7)
+    print(revenue_7)
+
     end_counter = time.perf_counter()
 
     print(f"Time elapsed is {start_counter - end_counter:0.4f} seconds")
     return (TimePeriod(visits_14, pageviews_14, orders_14, revenue_14),
             TimePeriod(visits_7, pageviews_7, orders_7, revenue_7))
+
+
+def sum_column(nums, C):
+    """
+    Function to add specific column in list of lists
+    """
+    result = sum(row[C] for row in nums)
+    return result
+
+
+def gather_all_historical_data():
+    """
+    Gather all data from Google worksheet.
+    Convert the data to integers.
+    Split the data between this week and last week.
+    Sum the data for visits, pageviews, orders and revenue for the two weeks.
+    Return the data to the TimePeriod class.
+    """
+    print("Starting performance counter")
+    start_counter = time.perf_counter()
+    print("Get all data")
+    all_data = SHEET.worksheet("dataset").get_all_values()
+    all_data = [sublist[:4] for sublist in all_data]
+    all_data.pop(0)
+    print("Convert to integer")
+    all_data_int = [[int(float(item)) if item.isnumeric()
+                    else item for item in sub_list] for sub_list in all_data]
+    print("Split data for last week and this week")
+    lastweek = all_data_int[:len(all_data_int)//2]
+    thisweek = all_data_int[len(all_data_int)//2:]
+
+    print("Sum items for this week")
+    lastweek_visits = (sum_column(lastweek, 0))
+    print(lastweek_visits)
+    lastweek_pageviews = (sum_column(lastweek, 1))
+    print(lastweek_pageviews)
+    lastweek_orders = (sum_column(lastweek, 2))
+    print(lastweek_orders)
+    lastweek_revenue = (sum_column(lastweek, 3))
+    print(lastweek_revenue)
+    print("Sum items for this week")
+    thisweek_visits = (sum_column(thisweek, 0))
+    print(thisweek_visits)
+    thisweek_pageviews = (sum_column(thisweek, 1))
+    print(thisweek_pageviews)
+    thisweek_orders = (sum_column(thisweek, 2))
+    print(thisweek_orders)
+    thisweek_revenue = (sum_column(thisweek, 3))
+    print(thisweek_revenue)
+
+    end_counter = time.perf_counter()
+
+    print(f"Time elapsed is {start_counter - end_counter:0.4f} seconds")
+
+    return (TimePeriod(lastweek_visits, lastweek_pageviews,
+            lastweek_orders, lastweek_revenue),
+            TimePeriod(thisweek_visits, thisweek_pageviews,
+            thisweek_orders, thisweek_revenue))
 
 
 def calculate_percentage_change(last, previous):
@@ -320,6 +396,7 @@ def main():
     update_worksheet(list_for_sheet, "dataset")
     delete_row("dataset")
     historical_data = gather_historical_data()
+    historical_data_all = gather_all_historical_data()
     generate_report(historical_data)
 
 

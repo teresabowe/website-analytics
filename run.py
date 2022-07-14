@@ -219,15 +219,15 @@ def generate_report(data):
     print("** Visits Analysis**\n")
     if round(visits_change, 2) > 0:
         print((f"Total visits for this week was {this_week[0]}, ") +
-              (f"while last week was {last_week[0]}, ") +
-              (f"a {round(visits_change,2)}% increase.\n"))
+              (f"while last week the visits total was {last_week[0]}. ") +
+              (f"This is {round(visits_change,2)}% of an increase.\n"))
     elif round(visits_change, 2) == 0:
         print((f"Total visits for this week was {this_week[0]}, ") +
-              (f"while last week was {last_week[0]}, ") +
+              (f"while last week the visits total was {last_week[0]}, ") +
               ("on par with this week.\n"))
     else:
         print((f"Total visits for this week was {this_week[0]}, ") +
-              (f"while last week was {last_week[0]}, ") +
+              (f"while last week the visits total was {last_week[0]}, ") +
               (f"a reduction of {round(-visits_change,2)}%.\n"))
 
     input("Press Enter to continue...")
@@ -235,12 +235,12 @@ def generate_report(data):
     print("** Pageviews and Pages Per Visit Analysis**\n")
     if round(pageviews_change, 2) > 0:
         print((f"Customer pageviews for this week was {this_week[1]}, ") +
-              (f"while last week shows {last_week[1]}, ") +
-              (f"a {round(pageviews_change,2)}% increase.\n"))
+              (f"while last week shows {last_week[1]}. ") +
+              (f"This is a {round(pageviews_change,2)}% increase.\n"))
     elif round(pageviews_change, 2) == 0:
         print((f"Customer pageviews for this week was {this_week[1]}, ") +
               (f"while last week shows {last_week[1]}, ") +
-              ("on par with this week.\n"))
+              ("which is on par with this week.\n"))
     else:
         print((f"Customer pageviews for this week was {this_week[1]}, ") +
               (f"while last week shows {last_week[1]}, ") +
@@ -257,8 +257,8 @@ def generate_report(data):
               (f"{last_week[4]}.\n"))
     else:
         print(("The weekly overview of pages per visit for this week was ") +
-              (f"{this_week[4]}, while last week was ") +
-              (f"{last_week[4]} a change of ") +
+              (f"{this_week[4]}, while last week it was ") +
+              (f"{last_week[4]}, a change of ") +
               (f"{round(-pages_per_visit_change,2)}. ") +
               ("The customer opened less pages per visit this week.\n"))
 
@@ -267,15 +267,15 @@ def generate_report(data):
     print("** Orders and Conversion Rate Analysis**\n")
     if round(orders_change, 2) > 0:
         print((f"Total orders for this week was {this_week[2]}, ") +
-              (f"while last week was {last_week[2]}, ") +
+              (f"while last week the figure was {last_week[2]}, ") +
               (f"a {round(orders_change,2)}% increase.\n"))
     elif round(orders_change, 2) == 0:
         print((f"Total orders for this week was {this_week[2]}, ") +
-              (f"last week was {last_week[2]}, ") +
+              (f"while last week the figure was {last_week[2]}, ") +
               ("on par with this week.\n"))
     else:
         print((f"Total orders for this week was {this_week[2]}, ") +
-              (f"while last week they were {last_week[2]}, ") +
+              (f"while last week the figure was {last_week[2]}, ") +
               (f"a reduction of {round(-orders_change,2)}%.\n"))
 
     if round(conversion_rate_change, 2) > 0:

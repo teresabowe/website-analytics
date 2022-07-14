@@ -141,6 +141,7 @@ def sum_column(nums, C):
 def gather_all_historical_data():
     """
     Gather all data from Google worksheet.
+    Print data in tabular format.
     Convert the data to integers.
     Split the data between this week and last week.
     Sum the data for visits, pageviews, orders and revenue for the two weeks.
@@ -150,6 +151,7 @@ def gather_all_historical_data():
     start_counter = time.perf_counter()
     print("Get all data")
     all_data = SHEET.worksheet("dataset").get_all_values()
+    print(tabulate(all_data, headers='firstrow', tablefmt='github', showindex=True))
     all_data = [sublist[:4] for sublist in all_data]
     all_data.pop(0)
     print("Convert to integer")

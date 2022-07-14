@@ -283,16 +283,16 @@ def generate_report(data):
               (f"a reduction of {round(-orders_change,2)}%.\n"))
 
     if round(conversion_rate_change, 2) > 0:
-        print(("The weekly overview of conversion rate for this week was ") +
+        print(("The overall conversion rate for this week was ") +
               (f"{this_week[5]}%, while last week was ") +
               (f"{last_week[5]}%, a positive difference of " +
               (f"{round(conversion_rate_change,2)}%.\n")))
     elif round(conversion_rate_change, 2) == 0:
-        print(("The weekly overview of conversion rate for this week was ") +
+        print(("The overall conversion rate for this week was ") +
               (f"{this_week[5]}%, and last week was the same at ") +
               (f"{last_week[5]}%.\n"))
     else:
-        print(("The weekly overview of conversion rate for this week was ") +
+        print(("The overall conversion rate for this week was ") +
               (f"{this_week[5]}%, while last week was ") +
               (f"{last_week[5]}%, a difference of ") +
               (f"{round(-conversion_rate_change,2)}%.\n"))

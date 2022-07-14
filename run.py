@@ -191,9 +191,9 @@ def generate_report(data):
     print("")
     input("Press Enter to continue with the analysis...\n")
     print("*** Data Analysis Report ***\n")
-    print(("We aggregated data for this week. " +
+    print(("We aggregated data for this week. \n" +
           str(data[1]) + str(data[1].do_calculated_fields())))
-    print(("We have also aggregated data for last week. ") +
+    print(("We have also aggregated data for last week. \n") +
           (str(data[0]) + str(data[0].do_calculated_fields())))
     
     input("Press Enter to continue with the analysis...\n")
@@ -251,16 +251,16 @@ def generate_report(data):
               (f"a reduction of {round(-pageviews_change,2)}%.\n"))
 
     if round(pages_per_visit_change, 2) > 0:
-        print(("The weekly overview of pages per visit for this week was ") +
+        print(("The overview of pages per visit for this week was ") +
               (f"{this_week[4]}, while last week it was ") +
               (f"{last_week[4]}, a positive difference of ") +
               (f"{round(pages_per_visit_change,2)}.\n"))
     elif round(pages_per_visit_change, 2) == 0:
-        print(("The weekly overview of pages per visit for this week was ") +
+        print(("The overview of pages per visit for this week was ") +
               (f"{this_week[4]}, and last week was the same at ") +
               (f"{last_week[4]}.\n"))
     else:
-        print(("The weekly overview of pages per visit for this week was ") +
+        print(("The overview of pages per visit for this week was ") +
               (f"{this_week[4]}, while last week it was ") +
               (f"{last_week[4]}, a change of ") +
               (f"{round(-pages_per_visit_change,2)}. ") +

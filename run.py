@@ -130,62 +130,6 @@ def delete_row(worksheet):
     print(f"The {worksheet} row 1 has been deleted successfully.\n")
 
 
-def get_historical_entries_dataset(cols, days1, days2):
-    """
-    Collects columns of data from the dataset worksheet
-    and returns the data as a list of lists.
-    """
-    seven_days = SHEET.worksheet("dataset")
-
-    columns = []
-    for ind in range(1, cols):
-        column = seven_days.col_values(ind)
-        columns.append(column[days1:days2])
-
-    return columns
-
-
-def gather_historical_data():
-    """
-    Assign variable to historical data collection function.
-    """
-    print("Reading historical data...\n")
-    print("Starting performance counter")
-    start_counter = time.perf_counter()
-
-    print("Get last weeks data")
-    hist_14_days = get_historical_entries_dataset(5, -14, -7)
-    print("Convert to integer")
-    hist_14_days = [[int(float(j)) for j in i] for i in hist_14_days]
-    print("Sum items for last week")
-    hist_14_days = [sum(sl) for sl in hist_14_days]
-    visits_14, pageviews_14, orders_14, revenue_14 = [hist_14_days[i] for i in
-                                                      (0, 1, 2, 3)]
-    print("Get this weeks data")
-    hist_7_days = get_historical_entries_dataset(5, -7, None)
-    print("Convert to integer")
-    hist_7_days = [[int(float(j)) for j in i] for i in hist_7_days]
-    print("Sum items for this week")
-    hist_7_days = [sum(sl) for sl in hist_7_days]
-    visits_7, pageviews_7, orders_7, revenue_7 = [hist_7_days[i] for i in
-                                                  (0, 1, 2, 3)]
-    print("Print returned data")
-    print(visits_14)
-    print(pageviews_14)
-    print(orders_14)
-    print(revenue_14)
-    print(visits_7)
-    print(pageviews_7)
-    print(orders_7)
-    print(revenue_7)
-
-    end_counter = time.perf_counter()
-
-    print(f"Time elapsed is {start_counter - end_counter:0.4f} seconds")
-    return (TimePeriod(visits_14, pageviews_14, orders_14, revenue_14),
-            TimePeriod(visits_7, pageviews_7, orders_7, revenue_7))
-
-
 def sum_column(nums, C):
     """
     Function to add specific column in list of lists
@@ -394,9 +338,8 @@ def main():
         do_calculated_fields().get_calculated_as_list()
     update_worksheet(list_for_sheet, "dataset")
     delete_row("dataset")
-    historical_data = gather_historical_data()
     historical_data_all = gather_all_historical_data()
-    generate_report(historical_data)
+    generate_report(historical_data_all)
 
 
 main()

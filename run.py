@@ -1,6 +1,5 @@
 import time
 import gspread
-import numpy as np
 from google.oauth2.service_account import Credentials
 from tabulate import tabulate
 

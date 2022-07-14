@@ -1,4 +1,3 @@
-import time
 import gspread
 from google.oauth2.service_account import Credentials
 from tabulate import tabulate
@@ -147,9 +146,10 @@ def gather_all_historical_data():
     Sum the data for visits, pageviews, orders and revenue for the two weeks.
     Return the data to the TimePeriod class.
     """
-    
+
     all_data = SHEET.worksheet("dataset").get_all_values()
-    print(tabulate(all_data, headers='firstrow', tablefmt='github', showindex=True))
+    print(tabulate(all_data, headers='firstrow', tablefmt='github',
+          showindex=True))
     all_data = [sublist[:4] for sublist in all_data]
     all_data.pop(0)
     all_data_int = [[int(float(item)) if item.isnumeric()

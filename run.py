@@ -113,6 +113,7 @@ def update_worksheet(data, worksheet):
     Receives a list of values to be inserted into a worksheet
     Update the relevant worksheet with the data provided
     """
+    input("Press Enter to update the worksheet...\n")
     print(f"Updating {worksheet} worksheet...\n")
     worksheet_to_update = SHEET.worksheet(worksheet)
     worksheet_to_update.append_row(data)
@@ -123,7 +124,7 @@ def delete_row(worksheet):
     """
     Delete row 1
     """
-    print(f"Deleting {worksheet} row 1...\n")
+    print(f"Deleting {worksheet} row 1 to tidy up...\n")
     worksheet_to_update = SHEET.worksheet(worksheet)
     worksheet_to_update.delete_rows(2)
     print(f"The {worksheet} row 1 has been deleted successfully.\n")
@@ -146,10 +147,12 @@ def gather_all_historical_data():
     Sum the data for visits, pageviews, orders and revenue for the two weeks.
     Return the data to the TimePeriod class.
     """
-
+    input("Press Enter to continue...\n")
+    print("Reading all data from the worksheet...\n")
     all_data = SHEET.worksheet("dataset").get_all_values()
-    print(tabulate(all_data, headers='firstrow', tablefmt='github',
-          showindex=True))
+    print("*** Website Data - 14 Days ***\n")
+    print("** The data entered today is at the bottom of the table **\n")
+    print(tabulate(all_data, headers='firstrow', tablefmt='github'))
     all_data = [sublist[:4] for sublist in all_data]
     all_data.pop(0)
     all_data_int = [[int(float(item)) if item.isnumeric()
@@ -185,13 +188,15 @@ def generate_report(data):
     """
     Report generator for website analytics.
     """
+    print("")
+    input("Press Enter to continue with the analysis...\n")
     print("*** Data Analysis Report ***\n")
-    print(("We have aggregated data for the previous 8 to 14 days. ") +
-          (str(data[0]) + str(data[0].do_calculated_fields())))
-    print(("We also aggregated data for the previous 1 to 7 days. " +
+    print(("We aggregated data for this week. " +
           str(data[1]) + str(data[1].do_calculated_fields())))
-
-    input("Press Enter to continue...")
+    print(("We have also aggregated data for last week. ") +
+          (str(data[0]) + str(data[0].do_calculated_fields())))
+    
+    input("Press Enter to continue with the analysis...\n")
 
     last_week = data[0].get_entered_as_list() + \
         data[0].do_calculated_fields().get_calculated_as_list()
@@ -215,7 +220,6 @@ def generate_report(data):
     revenue_change = calculate_percentage_change(this_week[3],
                                                  last_week[3])
 
-    print()
     print("** Visits Analysis**\n")
     if round(visits_change, 2) > 0:
         print((f"Total visits for this week was {this_week[0]}, ") +
@@ -230,7 +234,7 @@ def generate_report(data):
               (f"while last week the visits total was {last_week[0]}, ") +
               (f"a reduction of {round(-visits_change,2)}%.\n"))
 
-    input("Press Enter to continue...")
+    input("Press Enter to continue...\n")
 
     print("** Pageviews and Pages Per Visit Analysis**\n")
     if round(pageviews_change, 2) > 0:
@@ -262,7 +266,7 @@ def generate_report(data):
               (f"{round(-pages_per_visit_change,2)}. ") +
               ("The customer opened less pages per visit this week.\n"))
 
-    input("Press Enter to continue...")
+    input("Press Enter to continue...\n")
 
     print("** Orders and Conversion Rate Analysis**\n")
     if round(orders_change, 2) > 0:
@@ -293,7 +297,7 @@ def generate_report(data):
               (f"{last_week[5]}%, a difference of ") +
               (f"{round(-conversion_rate_change,2)}%.\n"))
 
-    input("Press Enter to continue...")
+    input("Press Enter to continue...\n")
 
     print("** Revenue Analysis**\n")
     if round(revenue_change, 2) > 0:
@@ -317,7 +321,6 @@ def main():
     day_of_data = gather_data()
     print(str(day_of_data))
     print(str(day_of_data.do_calculated_fields()))
-    input("Press Enter to continue...")
     list_for_sheet = day_of_data.get_entered_as_list() + day_of_data.\
         do_calculated_fields().get_calculated_as_list()
     update_worksheet(list_for_sheet, "dataset")

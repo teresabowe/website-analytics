@@ -195,7 +195,7 @@ def generate_report(data):
           str(data[1]) + str(data[1].do_calculated_fields())))
     print(("We have also aggregated data for last week. \n") +
           (str(data[0]) + str(data[0].do_calculated_fields())))
-    
+  
     input("Press Enter to continue with the analysis...\n")
 
     last_week = data[0].get_entered_as_list() + \
@@ -224,15 +224,17 @@ def generate_report(data):
     if round(visits_change, 2) > 0:
         print((f"Total visits for this week was {this_week[0]}, ") +
               (f"while last week the visits total was {last_week[0]}. ") +
-              (f"This is {round(visits_change,2)}% of an increase.\n"))
+              (f"This is {round(visits_change,2)}% of an increase.") +
+              (" \u2191 \n"))
     elif round(visits_change, 2) == 0:
         print((f"Total visits for this week was {this_week[0]}, ") +
               (f"while last week the visits total was {last_week[0]}, ") +
-              ("on par with this week.\n"))
+              ("on par with this week."))
     else:
         print((f"Total visits for this week was {this_week[0]}, ") +
               (f"while last week the visits total was {last_week[0]}, ") +
-              (f"a reduction of {round(-visits_change,2)}%.\n"))
+              (f"a reduction of {round(-visits_change,2)}%.") +
+              (" \u2193 \n"))
 
     input("Press Enter to continue...\n")
 
@@ -240,7 +242,8 @@ def generate_report(data):
     if round(pageviews_change, 2) > 0:
         print((f"Customer pageviews for this week was {this_week[1]}, ") +
               (f"while last week shows {last_week[1]}. ") +
-              (f"This is a {round(pageviews_change,2)}% increase.\n"))
+              (f"This is a {round(pageviews_change,2)}% increase.") +
+              (" \u2191 \n"))
     elif round(pageviews_change, 2) == 0:
         print((f"Customer pageviews for this week was {this_week[1]}, ") +
               (f"while last week shows {last_week[1]}, ") +
@@ -248,13 +251,15 @@ def generate_report(data):
     else:
         print((f"Customer pageviews for this week was {this_week[1]}, ") +
               (f"while last week shows {last_week[1]}, ") +
-              (f"a reduction of {round(-pageviews_change,2)}%.\n"))
+              (f"a reduction of {round(-pageviews_change,2)}%.") +
+              (" \u2193 \n"))
 
     if round(pages_per_visit_change, 2) > 0:
         print(("The overview of pages per visit for this week was ") +
               (f"{this_week[4]}, while last week it was ") +
               (f"{last_week[4]}, a positive difference of ") +
-              (f"{round(pages_per_visit_change,2)}.\n"))
+              (f"{round(pages_per_visit_change,2)}.") +
+              (" \u2191 \n"))
     elif round(pages_per_visit_change, 2) == 0:
         print(("The overview of pages per visit for this week was ") +
               (f"{this_week[4]}, and last week was the same at ") +
@@ -264,7 +269,8 @@ def generate_report(data):
               (f"{this_week[4]}, while last week it was ") +
               (f"{last_week[4]}, a change of ") +
               (f"{round(-pages_per_visit_change,2)}. ") +
-              ("The customer opened less pages per visit this week.\n"))
+              ("The customer opened less pages per visit this week.") +
+              (" \u2193 \n"))
 
     input("Press Enter to continue...\n")
 
@@ -272,7 +278,8 @@ def generate_report(data):
     if round(orders_change, 2) > 0:
         print((f"Total orders for this week was {this_week[2]}, ") +
               (f"while last week the figure was {last_week[2]}, ") +
-              (f"a {round(orders_change,2)}% increase.\n"))
+              (f"a {round(orders_change,2)}% increase.") +
+              (" \u2191 \n"))
     elif round(orders_change, 2) == 0:
         print((f"Total orders for this week was {this_week[2]}, ") +
               (f"while last week the figure was {last_week[2]}, ") +
@@ -280,13 +287,15 @@ def generate_report(data):
     else:
         print((f"Total orders for this week was {this_week[2]}, ") +
               (f"while last week the figure was {last_week[2]}, ") +
-              (f"a reduction of {round(-orders_change,2)}%.\n"))
+              (f"a reduction of {round(-orders_change,2)}%.") +
+              (" \u2193 \n"))
 
     if round(conversion_rate_change, 2) > 0:
         print(("The overall conversion rate for this week was ") +
               (f"{this_week[5]}%, while last week was ") +
               (f"{last_week[5]}%, a positive difference of " +
-              (f"{round(conversion_rate_change,2)}%.\n")))
+              (f"{round(conversion_rate_change,2)}%.") +
+              (" \u2191 \n")))
     elif round(conversion_rate_change, 2) == 0:
         print(("The overall conversion rate for this week was ") +
               (f"{this_week[5]}%, and last week was the same at ") +
@@ -295,7 +304,8 @@ def generate_report(data):
         print(("The overall conversion rate for this week was ") +
               (f"{this_week[5]}%, while last week was ") +
               (f"{last_week[5]}%, a difference of ") +
-              (f"{round(-conversion_rate_change,2)}%.\n"))
+              (f"{round(-conversion_rate_change,2)}%.") +
+              (" \u2193 \n"))
 
     input("Press Enter to continue...\n")
 
@@ -303,7 +313,8 @@ def generate_report(data):
     if round(revenue_change, 2) > 0:
         print((f"Total revenue for this week was {this_week[3]}, ") +
               (f"while last week it was {last_week[3]}, ") +
-              (f"a {round(revenue_change,2)}% increase.\n"))
+              (f"a {round(revenue_change,2)}% increase.") +
+              (" \u2191 \n"))
     elif round(revenue_change, 2) == 0:
         print((f"Total revenue for this week was {this_week[3]}, ") +
               (f"while last week it was {last_week[3]}, ") +
@@ -311,7 +322,8 @@ def generate_report(data):
     else:
         print((f"Total revenue for this week was {this_week[3]}, ") +
               (f"while last week it was {last_week[3]}, ") +
-              (f"a reduction of {round(-revenue_change,2)}%.\n"))
+              (f"a reduction of {round(-revenue_change,2)}%.") +
+              (" \u2193 \n"))
 
 
 def main():

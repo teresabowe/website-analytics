@@ -147,42 +147,24 @@ def gather_all_historical_data():
     Sum the data for visits, pageviews, orders and revenue for the two weeks.
     Return the data to the TimePeriod class.
     """
-    print("Starting performance counter")
-    start_counter = time.perf_counter()
-    print("Get all data")
+    
     all_data = SHEET.worksheet("dataset").get_all_values()
     print(tabulate(all_data, headers='firstrow', tablefmt='github', showindex=True))
     all_data = [sublist[:4] for sublist in all_data]
     all_data.pop(0)
-    print("Convert to integer")
     all_data_int = [[int(float(item)) if item.isnumeric()
                     else item for item in sub_list] for sub_list in all_data]
-    print("Split data for last week and this week")
     lastweek = all_data_int[:len(all_data_int)//2]
     thisweek = all_data_int[len(all_data_int)//2:]
 
-    print("Sum items for this week")
     lastweek_visits = (sum_column(lastweek, 0))
-    print(lastweek_visits)
     lastweek_pageviews = (sum_column(lastweek, 1))
-    print(lastweek_pageviews)
     lastweek_orders = (sum_column(lastweek, 2))
-    print(lastweek_orders)
     lastweek_revenue = (sum_column(lastweek, 3))
-    print(lastweek_revenue)
-    print("Sum items for this week")
     thisweek_visits = (sum_column(thisweek, 0))
-    print(thisweek_visits)
     thisweek_pageviews = (sum_column(thisweek, 1))
-    print(thisweek_pageviews)
     thisweek_orders = (sum_column(thisweek, 2))
-    print(thisweek_orders)
     thisweek_revenue = (sum_column(thisweek, 3))
-    print(thisweek_revenue)
-
-    end_counter = time.perf_counter()
-
-    print(f"Time elapsed is {start_counter - end_counter:0.4f} seconds")
 
     return (TimePeriod(lastweek_visits, lastweek_pageviews,
             lastweek_orders, lastweek_revenue),

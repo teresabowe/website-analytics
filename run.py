@@ -26,7 +26,7 @@ class TimePeriod:
         self.revenue = revenue
 
     def __str__(self):
-        return 'For this time period, the data are visits: ' \
+        return 'For this period, the data are visits: ' \
             + str(self.visits) + ', pageviews: ' + str(self.pageviews)\
             + ', orders: ' + str(self.orders) + ', and revenue: ' \
             + str(self.revenue)+'.\n'
@@ -54,7 +54,7 @@ class Calculated:
 
     def __str__(self):
         return 'We calculated pages per visit of ' + str(self.pages_per_visit)\
-         + ', and a conversion rate of ' + str(self.conversion_rate) + '%.\n'
+         + ' and a conversion rate of ' + str(self.conversion_rate) + '%.\n'
 
     def get_calculated_as_list(self):
         return [self.pages_per_visit, self.conversion_rate]
@@ -224,8 +224,8 @@ def generate_report(data):
     print("** Visits Analysis **\n")
     if round(visits_change, 2) > 0:
         print(tr.fill((f"Total visits for this week was {this_week[0]}, ") +
-              (f"while last week the visits total was {last_week[0]}. ") +
-              (f"This is {round(visits_change,2)}% of an increase.") +
+              (f"while last week the visits total was {last_week[0]}, ") +
+              (f"an increase of {round(visits_change,2)}%.") +
               (" \u2191"), width=80))
     elif round(visits_change, 2) == 0:
         print(tr.fill((f"Total visits for this week was {this_week[0]}, ") +
@@ -242,13 +242,13 @@ def generate_report(data):
     print("** Pageviews and Pages Per Visit Analysis **\n")
     if round(pageviews_change, 2) > 0:
         print(tr.fill((f"Pageviews for this week was {this_week[1]}, ") +
-              (f"while last week shows {last_week[1]}. ") +
-              (f"This is a {round(pageviews_change,2)}% increase.") +
+              (f"while last week shows {last_week[1]}, ") +
+              (f"an increase of {round(pageviews_change,2)}%.") +
               (" \u2191"), width=80))
     elif round(pageviews_change, 2) == 0:
         print(tr.fill((f"Pageviews for this week was {this_week[1]}, ") +
-              (f"while last week shows {last_week[1]}, ") +
-              ("which is on par with this week."), width=80))
+              (f"while last week shows {last_week[1]}. ") +
+              ("This is on par with this week."), width=80))
     else:
         print(tr.fill((f"Pageviews for this week was {this_week[1]}, ") +
               (f"while last week shows {last_week[1]}, ") +
@@ -270,24 +270,24 @@ def generate_report(data):
               (f"{this_week[4]}, while last week it was ") +
               (f"{last_week[4]}, a change of ") +
               (f"{round(-pages_per_visit_change,2)}. ") +
-              ("The customer opened less pages per visit this week.") +
+              ("The customer opened fewer pages per visit this week.") +
               (" \u2193"), width=80))
 
     input("Press Enter to continue...\n")
 
     print("** Orders and Conversion Rate Analysis **\n")
     if round(orders_change, 2) > 0:
-        print(tr.fill((f"Total orders for this week was {this_week[2]}, ") +
-              (f"while last week the figure was {last_week[2]}, ") +
+        print(tr.fill((f"Total orders for this week were {this_week[2]}, ") +
+              (f"while last week they were {last_week[2]}, ") +
               (f"a {round(orders_change,2)}% increase.") +
               (" \u2191"), width=80))
     elif round(orders_change, 2) == 0:
-        print(tr.fill((f"Total orders for this week was {this_week[2]}, ") +
-              (f"while last week the figure was {last_week[2]}, ") +
+        print(tr.fill((f"Total orders for this week were {this_week[2]}, ") +
+              (f"while last week they were {last_week[2]}, ") +
               ("on par with this week."), width=80))
     else:
-        print(tr.fill((f"Total orders for this week was {this_week[2]}, ") +
-              (f"while last week the figure was {last_week[2]}, ") +
+        print(tr.fill((f"Total orders for this week were {this_week[2]}, ") +
+              (f"while last week they were {last_week[2]}, ") +
               (f"a reduction of {round(-orders_change,2)}%.") +
               (" \u2193"), width=80))
 
@@ -312,17 +312,17 @@ def generate_report(data):
 
     print("** Revenue Analysis **\n")
     if round(revenue_change, 2) > 0:
-        print(tr.fill((f"Total revenue for this week was {this_week[3]}, ") +
-              (f"while last week it was {last_week[3]}, ") +
+        print(tr.fill((f"Total revenue for this week were {this_week[3]}, ") +
+              (f"while last week they were {last_week[3]}, ") +
               (f"a {round(revenue_change,2)}% increase.") +
               (" \u2191"), width=80))
     elif round(revenue_change, 2) == 0:
-        print(tr.fill((f"Total revenue for this week was {this_week[3]}, ") +
-              (f"while last week it was {last_week[3]}, ") +
+        print(tr.fill((f"Total revenue for this week were {this_week[3]}, ") +
+              (f"while last week they were {last_week[3]}, ") +
               ("on par with this week."), width=80))
     else:
-        print(tr.fill((f"Total revenue for this week was {this_week[3]}, ") +
-              (f"while last week it was {last_week[3]}, ") +
+        print(tr.fill((f"Total revenue for this week were {this_week[3]}, ") +
+              (f"while last week they were {last_week[3]}, ") +
               (f"a reduction of {round(-revenue_change,2)}%.") +
               (" \u2193"), width=80))
 

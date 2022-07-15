@@ -15,6 +15,17 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('website_data')
 
 
+def display_greeting():
+    """
+    Welcome message.
+    """
+    print(tr.fill(("Hello! This reporting application provides insights \
+                    regarding your website performance."), width=80))
+    print(tr.fill(("You will shortly be prompted to enter visits, pageviews, \
+                    orders, and revenue for today."), width=80))
+    print("")
+
+
 class TimePeriod:
     """
     Represent website analytics data for a time period.
@@ -303,7 +314,7 @@ def generate_report(data):
               (f"{last_week[5]}%."), width=80))
     else:
         print(tr.fill(("The overall conversion rate for this week was ") +
-              (f"{this_week[5]}%, while last week was ") +
+              (f"{this_week[5]}%, while last week it was ") +
               (f"{last_week[5]}%, a difference of ") +
               (f"{round(-conversion_rate_change,2)}%.") +
               (" \u2193"), width=80))
@@ -312,16 +323,16 @@ def generate_report(data):
 
     print("** Revenue Analysis **\n")
     if round(revenue_change, 2) > 0:
-        print(tr.fill((f"Total revenue for this week were {this_week[3]}, ") +
+        print(tr.fill((f"Total revenue for this week was {this_week[3]}, ") +
               (f"while last week they were {last_week[3]}, ") +
               (f"a {round(revenue_change,2)}% increase.") +
               (" \u2191"), width=80))
     elif round(revenue_change, 2) == 0:
-        print(tr.fill((f"Total revenue for this week were {this_week[3]}, ") +
+        print(tr.fill((f"Total revenue for this week was {this_week[3]}, ") +
               (f"while last week they were {last_week[3]}, ") +
               ("on par with this week."), width=80))
     else:
-        print(tr.fill((f"Total revenue for this week were {this_week[3]}, ") +
+        print(tr.fill((f"Total revenue for this week was {this_week[3]}, ") +
               (f"while last week they were {last_week[3]}, ") +
               (f"a reduction of {round(-revenue_change,2)}%.") +
               (" \u2193"), width=80))
@@ -334,6 +345,7 @@ def main():
     """
     Run program functions
     """
+    display_greeting()
     day_of_data = gather_data()
     print(tr.fill(str(day_of_data), width=80))
     print(tr.fill(str(day_of_data.do_calculated_fields()), width=80))

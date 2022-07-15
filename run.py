@@ -306,7 +306,7 @@ def generate_report(data):
               (f"{this_week[5]}%, while last week was ") +
               (f"{last_week[5]}%, a difference of ") +
               (f"{round(-conversion_rate_change,2)}%.") +
-              (" \u2191"), width=80))
+              (" \u2193"), width=80))
 
     input("Press Enter to continue...\n")
 

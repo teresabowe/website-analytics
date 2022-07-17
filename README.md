@@ -70,7 +70,21 @@ The idea for the application stems from a desire to introduce automation into da
 
 ## Design
 
-### Technologies Used
+<details>
+  <summary>Flow Chart</summary>
+  
+  ![Flow Chart](/docs/flow-diagram-analytics.png)
+</details>
+
+## Technologies Used
+
+### Languages
+
+- Python 3.8.11
+
+### Frameworks Libraries and Programs
+
+- 
 
 ## Testing
 

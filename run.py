@@ -95,10 +95,10 @@ def validate_data(values, lower, higher):
     try:
         if int(values) < lower or int(values) > higher:
             raise ValueError(
-              "Value is outside the normal range"
+              "The value you entered is outside the normal range"
               )
     except ValueError as e:
-        print(f"Invalid data {e}:, please try again.\n")
+        print(f"Oops! {e}, please try again.\n")
         return False
 
     return True

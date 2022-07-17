@@ -45,6 +45,9 @@ class TimePeriod:
             + str(self.revenue)+'.\n'
 
     def get_entered_as_list(self):
+        """
+        Return list.
+        """
         return[self.visits, self.pageviews, self.orders, self.revenue]
 
     def do_calculated_fields(self):
@@ -70,6 +73,9 @@ class Calculated:
          + ' and a conversion rate of ' + str(self.conversion_rate) + '%.\n'
 
     def get_calculated_as_list(self):
+        """
+        Return list.
+        """
         return [self.pages_per_visit, self.conversion_rate]
 
 

@@ -109,10 +109,110 @@ The idea for the application stems from a desire to introduce automation into da
 
 ## Testing
 
-### Manual Testing
-
+Application features were manually tested from the command line in the terminal window during the development phase.
 
 ### Features Testing
+
+<details>
+  <summary>Test results.</summary>
+
+| Given                                    | When                | Then                       | Outcome      |
+| :---                                     |   :---              |   :---                     |  :---        |
+| Application is deployed                  |  3500 entered       |  Moves to next input       | As expected  |
+| Authentication to Google is complete     |                     |                            |              |
+| Application is running                   |                     |                            |              |
+| Enter visits                             |  35000 entered      |  Custom Error              | As expected  |
+|                                          |                     |  The value you entered     |              |
+|                                          |                     |  is outside the normal     |              |
+|                                          |                     |  range, please try again.  |              |
+|                                          |  3,500 entered      |  ValueError                | As expected  |
+|                                          |                     |  invalid literal for       |              |
+|                                          |                     |  int() with base 10:       |              |
+|                                          |                     |  '3,500', please try       |              |
+|                                          |                     |  again                     |              |
+|                                          |  3500.00 entered    |  ValueError                | As expected  |
+|                                          |                     |  invalid literal for       |              |
+|                                          |                     |  int() with base 10:       |              |
+|                                          |                     |  '3500.00', please try     |              |
+|                                          |                     |  again                     |              |
+|                                          |                     |                            |              |
+| Application is deployed                  |  4500 entered       |  Moves to next input       | As expected  |
+| Authentication to Google is complete     |                     |                            |              |
+| Application is running                   |                     |                            |              |
+| Visits input successful                  |  45000 entered      |  Custom Error              | As expected  |
+| Enter pageviews                          |                     |  The value you entered     |              |
+|                                          |                     |  is outside the normal     |              |
+|                                          |                     |  range, please try again.  |              |
+|                                          |  4,500 entered      |  ValueError                | As expected  |
+|                                          |                     |  invalid literal for       |              |
+|                                          |                     |  int() with base 10:       |              |
+|                                          |                     |  '4,500', please try       |              |
+|                                          |                     |  again                     |              |
+|                                          |  4500.00 entered    |  ValueError                | As expected  |
+|                                          |                     |  invalid literal for       |              |
+|                                          |                     |  int() with base 10:       |              |
+|                                          |                     |  '4500.00', please try     |              |
+|                                          |                     |  again                     |              |
+| Application is deployed                  |  150  entered       |  Moves to next input       | As expected  |
+| Authentication to Google is complete     |                     |                            |              |
+| Application is running                   |                     |                            |              |
+| Visits input successful                  |  1500 entered       |  Custom Error              | As expected  |
+| Pageviews input successful               |                     |  The value you entered     |              |
+| Enter orders                             |                     |  is outside the normal     |              |
+|                                          |                     |  range, please try again.  |              |
+|                                          |  1,500 entered      |  ValueError                | As expected  |
+|                                          |                     |  invalid literal for       |              |
+|                                          |                     |  int() with base 10:       |              |
+|                                          |                     |  '1,500', please try       |              |
+|                                          |                     |  again                     |              |
+|                                          |  4500.00 entered    |  ValueError                | As expected  |
+|                                          |                     |  invalid literal for       |              |
+|                                          |                     |  int() with base 10:       |              |
+|                                          |                     |  '4500.00', please try     |              |
+|                                          |                     |  again                     |              |
+|                                          |                     |                            |              |
+|                                          |  0 entered          |  Moves to next input       | As expected  |
+| Application is deployed                  |  9000 entered       |  Moves to next input       | As expected  |
+| Authentication to Google is complete     |                     |                            |              |
+| Application is running                   |                     |                            |              |
+| Visits input successful                  |  0 entered          |  Custom Error              | As expected  |
+| Pageviews input successful               |                     |  The value you entered     |              |
+| Orders input 1-200                       |                     |  is outside the normal     |              |
+| Enter revenue                            |                     |  range, please try again.  |              |
+|                                          |                     |  The revenue data can be   |              | 
+|                                          |                     |  between 1 and 10000.      |              |
+|                                          |  1500.00 entered    |  Value Error               | As expected  |
+|                                          |                     |  invalid literal for       |              |
+|                                          |                     |  int() with base 10:       |              |
+|                                          |                     |  '1500.00', please try     |              |
+|                                          |                     |  again.                    |              |
+|                                          |  15000 entered      |  Custom Error              | As expected  |
+|                                          |                     |  The value you entered     |              |
+|                                          |                     |  is outside the normal     |              |
+|                                          |                     |  range, please try again.  |              |
+|                                          |                     |  The revenue data can be   |              | 
+|                                          |                     |  between 1 and 10000.      |              |
+| Application is deployed                  |  0 entered          |  Moves to next input       | As expected  |
+| Authentication to Google is complete     |                     |                            |              |
+| Application is running                   |                     |                            |              |
+| Visits input successful                  |  9000 entered       |  Custom Error              | As expected  |
+| Pageviews input successful               |                     |  The value you entered     |              |
+| Orders input 0                           |                     |  is outside the normal     |              |
+| Enter revenue                            |                     |  range, please try again.  |              |
+|                                          |                     |  The revenue data can be   |              | 
+|                                          |                     |  between 0 and 0.          |              |
+|                                          |  9000.00 entered    |  Value Error               | As expected  |
+|                                          |                     |  invalid literal for       |              |
+|                                          |                     |  int() with base 10:       |              |
+|                                          |                     |  '9000.00', please try     |              |
+|                                          |                     |  again.                    |              |
+|                                          |                     |  The revenue data can be   |              | 
+|                                          |                     |  between 0 and 0.          |              |
+| Message is "Press Enter to continue...   |  Enter entered      |  Program continues         | As expected  |
+|                                          |  Any other key is   |  The program waits for the | As expected  |
+|                                          |  entered            |  Enter key to be pressed   |              |
+
+</details>
 
 ### Validator Testing
 

@@ -58,6 +58,16 @@ Finally, the report with commentary is created.  Also, the user sees that the â€
 
 ### Future Features
 
+The idea for the application stems from a desire to introduce automation into data analytics reporting tasks repeated at regular intervals.  While the calculations for pages per visit and conversion rates are present, I feel that many other features could be added.  These could include but are not limited to the following:
+
+- Increasing the number of data fields analysed.  For example, cart abandonment data.
+
+- Replace the manual entry of visits, pageviews, etc., with an API to load the daily data automatically.
+
+- Prepare an automated daily email commentary for a wider audience.
+
+- Change the style and layout of the commentary text regularly.
+
 ## Design
 
 ### Technologies Used

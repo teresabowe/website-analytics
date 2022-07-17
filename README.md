@@ -22,6 +22,40 @@ As a user I would like to be able to:
 
 ### Existing Features
 
+When the website analytics application launches, the user is presented with a terminal window.  The text explains the purpose of the application and a brief description of what the user needs to do next.
+
+![Start](/docs/start.png)
+
+First, the user must enter data.  The application raises a ValueError if the number entered is outside the thresholds recommended or an integer has not been input.
+
+![Value Error](/docs/value-error.png)
+
+If the user enters zero orders, the application expects zero revenue. 
+
+![Orders Zero](/docs/orders-zero.png)
+
+If the user enters one or more orders, the application expects a non-zero value for revenue.
+
+![Orders not Zero](/docs/orders-zero.png)
+
+The user receives feedback regarding the new calculated fields of pages per visit and conversion rate.
+
+![Calculated Fields](/docs/calculated-fields.png)
+
+The worksheet is updated, and the user receives feedback to say the update has been successful.
+
+![Update Worksheet](/docs/update-worksheet.png)
+
+A table of 14 days of data is presented to the user.  It includes the most recent data entered in the current session.
+
+![Table](/docs/create-table.png)
+
+Finally, the report with commentary is created.  Also, the user sees that the ‘run program’ button is available to enter new data.
+
+![Report](/docs/data-analysis-report.png)
+![Run Program](/docs/run-program.png)
+![End of Report](/docs/end-of-report.png)
+
 ### Future Features
 
 ## Design

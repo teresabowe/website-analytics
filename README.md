@@ -36,7 +36,7 @@ If the user enters zero orders, the application expects zero revenue.
 
 If the user enters one or more orders, the application expects a non-zero value for revenue.
 
-![Orders not Zero](/docs/orders-zero.png)
+![Orders not Zero](/docs/orders-not-zero.png)
 
 The user receives feedback regarding the new calculated fields of pages per visit and conversion rate.
 

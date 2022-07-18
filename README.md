@@ -208,7 +208,7 @@ Application features were manually tested from the command line in the terminal 
 |                                          |                     |  again.                    |              |
 |                                          |                     |  The revenue data can be   |              | 
 |                                          |                     |  between 0 and 0.          |              |
-| Message is "Press Enter to continue...   |  Enter entered      |  Program continues         | As expected  |
+| Message is "Press Enter to continue..."  |  Enter entered      |  Program continues         | As expected  |
 |                                          |  Any other key is   |  The program waits for the | As expected  |
 |                                          |  entered            |  Enter key to be pressed   |              |
 

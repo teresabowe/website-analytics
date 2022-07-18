@@ -236,9 +236,9 @@ The new function is consistently up to 3 seconds faster than the old one.  The i
 
 ![PerformanceCounter](/docs/function-performance-counter.png)
 
-_Testing on Devices_
+_Testing on Mobile Devices_
 
-
+This application was not tested on mobile devices.
 
 ## Deployment
 
@@ -357,6 +357,6 @@ _Testing on Devices_
 
 ### Content
 
-
+The content for the Google Sheet is ficticious.
 
 

@@ -242,6 +242,102 @@ _Testing on Devices_
 
 ## Deployment
 
+<details>
+  <summary>Clone the repository</summary>
+
+- Go to https://github.com/teresabowe/website-analytics.
+- Click on the 'code' button and copy the URL with the HTTPS option underlined.
+- Open Git Bash.
+- Type 'git clone' along with the copied URL in the directory where the clone is to be stored.
+- Press Enter.
+
+</details>
+
+
+<details>
+  <summary>Create the Google Sheet</summary>
+
+- From a Google user account, go to Google Sheets.
+- Click on the + (plus) on the bottom right-hand corner.
+- Rename the worksheet to 'dataset'.
+- Add six columns, visits, pageviews, orders, revenue, pages per visit, and conversion rate.
+- Enter 14 lines of data similar to that shown in the table of the 'existing features' section of this document.
+
+</details>
+
+<details>
+  <summary>Setup the Google Drive API</summary>
+
+- From the Google Cloud Platform, go to the Manage Resource Page (https://console.cloud.google.com/cloud-resource-manager?_ga=2.95512412.1123028329.1658133535-1458248895.1656531052)
+- Enter the project name and click Create
+- Then select the project to open the Dashboard.
+- Click on the APIs and Services tab on the left side and Enable APIs and Services.
+- Type in 'Google Drive API' into the search bar
+- Select the Google Drive API and click on 'enable'.
+- Click on 'create credentials' on the top right side.
+- The Google Drive API should be pre-selected.
+- Click on the 'Application Data' radio button.
+- For 'Applications running on GCE, GKE, GAE, and GCF', select 'No, I'm not using them'.
+- Click 'next'.
+- Enter a 'Service Account Name' and 'Create and Continue'.
+- Select the role 'Basic' and 'Editor' for the service account
+- Click 'Continue'.
+- Select 'Done' in the 'Grant users access to this service account' section.
+- Find the Service Accounts section and click on the name of the service account just created.
+- Click on the 'KEYS' tab and 'ADD KEY'.
+- Select 'JSON' and 'Create'.
+- The new key is copied to the local computer.
+- Rename this file to creds.json.
+- Copy the creds.json to the local clone.
+- Open the creds.json file and copy the client-email address.
+- Go back to the worksheet created on Google Drive and click 'Share' on the top right-hand corner.
+- Paste the email address and ensure that the 'Editor' permission is selected.
+
+</details>
+
+<details>
+  <summary>Enable Google Sheets API</summary>
+
+- From the project dashboard, choose 'Library'.
+- Enter 'Google Sheets API' in the search bar.
+- Click on the Google Sheets API and then 'Enable'.
+
+</details>
+
+<details>
+  <summary>Install the gspread library in Python</summary>
+
+- Enter 'pip3 install gspread google-auth' in the terminal window.
+
+</details>
+
+<details>
+  <summary>Deploy the application to Heroku</summary>
+
+- In advance of the deployment enter 'pip3 freeze > requirements.txt' in the terminal window. This command creates a list of items to be installed by pip.
+- Login to Heroku or create a new account.
+- Select 'New' in the top right-hand corner and then 'create new app'.
+- Enter the name of the app and select the region.
+- Click on the Settings tab and 'Reveal Config Vars'.
+- Enter 'CREDS' into the key section.
+- Enter the contents of the creds.json file into the value section.
+- Click on Add.
+- Enter 'PORT' into the key section.
+- Enter '8000' into the value section.
+- Click on Add.
+- Go to the Buildpacks section and click on 'Add buildpack'.
+- Select Python and 'save changes'.
+- Click on 'Add buildpack' again.
+- Select node.js.
+- Make sure that the Python buildpack is on top.
+- Select the Deploy tab and select Github as the deployment method.
+- Authorise the connection and enter the name of the repository e.g. website-analytics.
+- Enter the name of the repository.  
+- Choose between Automatic and Manual deploy options. 
+- The application can be opened from the configuration page by clicking on the 'Open App' button on the top right.
+
+</details>
+
 ## Credits
 
 ### Code

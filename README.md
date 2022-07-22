@@ -13,7 +13,7 @@ As a user I would like to be able to:
 - Enter new data for visits, page views, orders, and revenue.
 - Have the application give me feedback when I enter incorrect data.
 - Update a data repository with the entered data.
-- Delete old data.
+- Delete old data from the repository.
 - View the most up-to-date data in the repository.
 - Calculate pages per visit and conversion rate.
 - Run historical reporting showing week-on-week comparisons.

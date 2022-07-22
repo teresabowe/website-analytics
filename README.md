@@ -84,27 +84,27 @@ The idea for the application stems from a desire to introduce automation into da
 
 ### Frameworks, Libraries and Programs
 
-- Google Sheets: The external data store for this project is Google Sheets, an online spreadsheet editor.
+- [Google Sheets](https://www.google.com/sheets/about/): The external data store for this project is Google Sheets, an online spreadsheet editor.
 
-- Google Sheets API: This API facilitates read, write, and formatting functionality between Python and Google Sheets.
+- [Google Sheets API](https://developers.google.com/sheets/api): This API facilitates read, write, and formatting functionality between Python and Google Sheets.
 
-- Google Drive API: The Drive API is used to interact with Google Drive storage.
+- [Google Drive API](https://developers.google.com/drive/api): The Drive API is used to interact with Google Drive storage.
 
-- Python gspread API: Python API for Google Sheets.
+- [Python gspread API](https://docs.gspread.org/en/latest/): Python API for Google Sheets.
 
-- Python google-auth Library: The Google auth library for Python enables the interaction between Python and Google Sheets.
+- [Python google-auth Library](https://pypi.org/project/google-auth/): The Google auth library for Python enables the interaction between Python and Google Sheets.
 
-- Python time Library: The time library was used to temporarily measure how long it took to run functions.
+- [Python time Library](https://docs.python.org/3/library/time.html): The time library was used to temporarily measure how long it took to run functions.
 
-- Python tabulate Library: The tabulate library was used to present a table of historical data in the Python terminal.
+- [Python tabulate Library](https://pypi.org/project/tabulate/): The tabulate library was used to present a table of historical data in the Python terminal.
 
-- Python textwrap Library: The textwrap library was used along with Python fill to wrap long sentences.
+- [Python textwrap Library](https://docs.python.org/3/library/textwrap.html): The textwrap library was used along with Python fill to wrap long sentences.
 
-- Git: Git was used when implementing version control for the application.
+- [Git](https://github.com/git/git): Git was used when implementing version control for the application.
 
-- Github: Github was used to host and manage the application repository up to the time of deployment.
+- [Github](https://github.com/): Github was used to host and manage the application repository up to the time of deployment.
 
-- Heroku: The final version of the application was deployed on the Heroku platform. 
+- [Heroku](https://www.heroku.com/): The final version of the application was deployed on the Heroku platform. 
 
 
 ## Testing

@@ -100,7 +100,7 @@ The idea for the application stems from a desire to introduce automation into da
 
 - [Python textwrap Library](https://docs.python.org/3/library/textwrap.html): The textwrap library was used along with Python fill to wrap long sentences.
 
-- [Git](https://github.com/git/git): Git was used when implementing version control for the application.
+- [Git](https://git-scm.com/): Git was used when implementing version control for the application.
 
 - [Github](https://github.com/): Github was used to host and manage the application repository up to the time of deployment.
 
